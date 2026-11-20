@@ -1,0 +1,1824 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>mm131爽 - 原创影像社区,记录真实生活与创意</title>
+<meta name="description" content="mm131爽官方网站，专注原创影像内容生态，汇聚创作者日常记录、城市探索与生活方式影像，持续打造值得信赖的品质视频社区。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231f2937'/%3E%3Cpath d='M24 20l22 12-22 12z' fill='%23f5b942'/%3E%3C/svg%3E">
+<style>
+:root{
+  --mm131-bg:#0e131c;
+  --mm131-bg2:#111927;
+  --mm131-card:#161f2e;
+  --mm131-card2:#1b2536;
+  --mm131-line:#253145;
+  --mm131-text:#e8edf5;
+  --mm131-muted:#93a1b8;
+  --mm131-accent:#f5b942;
+  --mm131-accent2:#3ddc97;
+  --mm131-accent3:#6c8cff;
+  --mm131-radius:16px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;scroll-padding-top:132px;}
+body{
+  font-family:"PingFang SC","Microsoft YaHei","Helvetica Neue",Arial,sans-serif;
+  background:var(--mm131-bg);
+  color:var(--mm131-text);
+  line-height:1.75;
+  -webkit-font-smoothing:antialiased;
+}
+img{display:block;max-width:100%;}
+a{color:inherit;text-decoration:none;}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit;}
+ul{list-style:none;}
+
+/* ============ 吸顶容器 ============ */
+.mm131-sticky-wrap{position:sticky;top:0;z-index:100;}
+
+/* ============ 公告条 ============ */
+.mm131-notice{
+  background:linear-gradient(90deg,#1a2436 0%,#22304a 55%,#1a2436 100%);
+  border-bottom:1px solid var(--mm131-line);
+  font-size:13px;
+  color:#c8d3e5;
+}
+.mm131-notice-inner{
+  max-width:1240px;margin:0 auto;padding:8px 22px;
+  display:flex;align-items:center;gap:12px;overflow:hidden;
+}
+.mm131-notice-badge{
+  flex:none;background:var(--mm131-accent);color:#141a24;
+  font-weight:700;font-size:12px;padding:1px 9px;border-radius:20px;letter-spacing:.5px;
+}
+.mm131-notice-track{display:flex;gap:34px;white-space:nowrap;animation:mm131-slide 30s linear infinite;}
+.mm131-notice-track b{color:var(--mm131-accent);font-weight:600;}
+@keyframes mm131-slide{
+  0%{transform:translateX(0);}
+  100%{transform:translateX(-50%);}
+}
+@media (prefers-reduced-motion:reduce){.mm131-notice-track{animation:none;}}
+
+/* ============ 页头 ============ */
+.mm131-header{
+  background:rgba(14,19,28,.92);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--mm131-line);
+}
+.mm131-header-inner{
+  max-width:1240px;margin:0 auto;padding:0 22px;
+  display:flex;align-items:center;gap:26px;height:68px;
+}
+.mm131-logo{display:flex;align-items:center;gap:10px;flex:none;}
+.mm131-logo-mark{
+  width:38px;height:38px;border-radius:11px;
+  background:linear-gradient(135deg,var(--mm131-accent),#ff7a4d);
+  display:grid;place-items:center;flex:none;
+}
+.mm131-logo-mark svg{width:20px;height:20px;}
+.mm131-logo-text{font-size:19px;font-weight:800;letter-spacing:.5px;}
+.mm131-logo-text em{
+  font-style:normal;font-size:11px;font-weight:500;color:var(--mm131-muted);
+  display:block;line-height:1.2;letter-spacing:1.6px;
+}
+.mm131-nav{display:flex;gap:4px;margin-left:6px;flex:1;}
+.mm131-nav a{
+  font-size:14.5px;color:var(--mm131-muted);padding:8px 13px;border-radius:9px;
+  transition:.2s;white-space:nowrap;
+}
+.mm131-nav a:hover,.mm131-nav a.mm131-nav-active{color:var(--mm131-text);background:#1a2434;}
+.mm131-search{
+  display:flex;align-items:center;gap:8px;flex:none;
+  background:#161f2c;border:1px solid var(--mm131-line);
+  border-radius:11px;padding:6px 6px 6px 13px;width:250px;transition:.25s;
+}
+.mm131-search:focus-within{border-color:var(--mm131-accent);box-shadow:0 0 0 3px rgba(245,185,66,.13);}
+.mm131-search svg{width:16px;height:16px;flex:none;stroke:var(--mm131-muted);}
+.mm131-search input{
+  background:none;border:none;outline:none;color:var(--mm131-text);
+  font-size:13.5px;width:100%;min-width:0;
+}
+.mm131-search input::placeholder{color:#68768c;}
+.mm131-search button{
+  flex:none;background:var(--mm131-accent);color:#141a24;font-size:13px;font-weight:700;
+  padding:5px 12px;border-radius:8px;transition:.2s;
+}
+.mm131-search button:hover{filter:brightness(1.08);}
+.mm131-burger{
+  display:none;width:40px;height:40px;border-radius:10px;border:1px solid var(--mm131-line);
+  place-items:center;flex:none;
+}
+.mm131-burger span{display:block;width:18px;height:2px;background:var(--mm131-text);border-radius:2px;position:relative;}
+.mm131-burger span::before,.mm131-burger span::after{
+  content:"";position:absolute;left:0;width:18px;height:2px;background:var(--mm131-text);border-radius:2px;
+}
+.mm131-burger span::before{top:-6px;}
+.mm131-burger span::after{top:6px;}
+
+/* 移动菜单 */
+.mm131-mobile-menu{
+  display:none;background:var(--mm131-bg2);border-bottom:1px solid var(--mm131-line);
+  padding:10px 22px 18px;
+}
+.mm131-mobile-menu.mm131-open{display:block;}
+.mm131-mobile-menu a{
+  display:block;padding:11px 4px;font-size:15px;color:var(--mm131-muted);
+  border-bottom:1px solid #1c2637;
+}
+.mm131-mobile-menu a:last-child{border-bottom:none;}
+
+/* ============ 通用容器 ============ */
+.mm131-wrap{max-width:1240px;margin:0 auto;padding:0 22px;}
+.mm131-section{padding:76px 0;}
+.mm131-section-head{margin-bottom:36px;max-width:780px;}
+.mm131-kicker{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:12.5px;letter-spacing:2px;color:var(--mm131-accent);
+  font-weight:700;text-transform:uppercase;margin-bottom:12px;
+}
+.mm131-kicker::before{content:"";width:22px;height:2px;background:var(--mm131-accent);border-radius:2px;}
+.mm131-h2{
+  font-size:clamp(24px,3.1vw,34px);font-weight:800;line-height:1.3;letter-spacing:.3px;
+}
+.mm131-sub{color:var(--mm131-muted);font-size:15px;margin-top:10px;}
+
+/* ============ 首屏 ============ */
+.mm131-hero{
+  position:relative;overflow:hidden;
+  background:
+    radial-gradient(900px 420px at 82% -10%,rgba(108,140,255,.20),transparent 60%),
+    radial-gradient(700px 380px at 8% 110%,rgba(245,185,66,.14),transparent 62%),
+    var(--mm131-bg2);
+  border-bottom:1px solid var(--mm131-line);
+}
+.mm131-hero-inner{
+  max-width:1240px;margin:0 auto;padding:66px 22px 74px;
+  display:grid;grid-template-columns:1.15fr 1fr;gap:54px;align-items:center;
+}
+.mm131-hero-tag{
+  display:inline-flex;align-items:center;gap:9px;font-size:13px;color:var(--mm131-accent2);
+  background:rgba(61,220,151,.1);border:1px solid rgba(61,220,151,.28);
+  padding:5px 14px;border-radius:30px;margin-bottom:20px;font-weight:600;
+}
+.mm131-hero-tag i{width:7px;height:7px;border-radius:50%;background:var(--mm131-accent2);font-style:normal;box-shadow:0 0 0 4px rgba(61,220,151,.18);}
+.mm131-h1{
+  font-size:clamp(34px,5vw,56px);line-height:1.16;font-weight:900;letter-spacing:1px;
+  background:linear-gradient(115deg,#ffffff 32%,var(--mm131-accent) 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  margin-bottom:18px;
+}
+.mm131-hero-lead{font-size:16.5px;color:#bfcbdd;max-width:560px;margin-bottom:26px;}
+.mm131-hero-actions{display:flex;flex-wrap:wrap;gap:13px;margin-bottom:34px;}
+.mm131-btn{
+  display:inline-flex;align-items:center;gap:8px;padding:12px 24px;border-radius:11px;
+  font-size:14.5px;font-weight:700;transition:.22s;border:1px solid transparent;
+}
+.mm131-btn-primary{background:var(--mm131-accent);color:#131a24;box-shadow:0 8px 22px rgba(245,185,66,.22);}
+.mm131-btn-primary:hover{transform:translateY(-2px);filter:brightness(1.06);}
+.mm131-btn-ghost{background:#1a2434;border-color:var(--mm131-line);color:var(--mm131-text);}
+.mm131-btn-ghost:hover{border-color:var(--mm131-accent);color:var(--mm131-accent);}
+.mm131-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;max-width:520px;}
+.mm131-stat{background:#151e2b;border:1px solid var(--mm131-line);border-radius:13px;padding:14px 16px;}
+.mm131-stat b{display:block;font-size:22px;font-weight:800;color:var(--mm131-accent);line-height:1.3;}
+.mm131-stat span{font-size:12.5px;color:var(--mm131-muted);}
+
+/* 首屏视觉拼贴 */
+.mm131-hero-visual{position:relative;}
+.mm131-hero-main{
+  border-radius:20px;overflow:hidden;border:1px solid var(--mm131-line);
+  box-shadow:0 26px 60px rgba(0,0,0,.45);position:relative;
+}
+.mm131-hero-main img{width:100%;height:auto;aspect-ratio:16/10;object-fit:cover;}
+.mm131-hero-play{
+  position:absolute;inset:0;display:grid;place-items:center;pointer-events:none;
+}
+.mm131-hero-play i{
+  width:60px;height:60px;border-radius:50%;background:rgba(245,185,66,.94);
+  display:grid;place-items:center;box-shadow:0 8px 26px rgba(0,0,0,.4);
+}
+.mm131-hero-play i::after{
+  content:"";width:0;height:0;border-left:16px solid #141a24;
+  border-top:10px solid transparent;border-bottom:10px solid transparent;margin-left:4px;
+}
+.mm131-hero-side{
+  position:absolute;right:-16px;bottom:-26px;width:196px;border-radius:15px;overflow:hidden;
+  border:1px solid var(--mm131-line);box-shadow:0 18px 38px rgba(0,0,0,.5);
+  background:var(--mm131-card);
+}
+.mm131-hero-side img{width:100%;aspect-ratio:16/10;object-fit:cover;}
+.mm131-hero-side p{font-size:12.5px;padding:9px 11px;color:#c3cee0;line-height:1.5;}
+.mm131-hero-chip{
+  position:absolute;left:-14px;top:22px;background:#1b2536;border:1px solid var(--mm131-line);
+  border-radius:12px;padding:9px 14px;font-size:12.5px;color:#cbd6e8;
+  box-shadow:0 12px 28px rgba(0,0,0,.4);
+}
+.mm131-hero-chip b{color:var(--mm131-accent2);}
+
+/* ============ 关于/深度解析 ============ */
+.mm131-about{background:var(--mm131-bg);}
+.mm131-about-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:48px;align-items:start;}
+.mm131-about-art{
+  border-radius:var(--mm131-radius);overflow:hidden;border:1px solid var(--mm131-line);
+  position:relative;
+}
+.mm131-about-art img{width:100%;aspect-ratio:4/5;object-fit:cover;}
+.mm131-about-art figcaption{
+  position:absolute;left:0;right:0;bottom:0;padding:28px 20px 16px;
+  background:linear-gradient(transparent,rgba(8,12,18,.92));font-size:13px;color:#c7d2e4;
+}
+.mm131-about-body p{color:#bcc8da;font-size:15px;margin-bottom:17px;}
+.mm131-about-body p strong{color:var(--mm131-accent);font-weight:700;}
+.mm131-about-list{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:26px;}
+.mm131-about-item{
+  background:var(--mm131-card);border:1px solid var(--mm131-line);border-radius:12px;
+  padding:14px 16px;
+}
+.mm131-about-item h4{font-size:14.5px;color:var(--mm131-accent2);margin-bottom:4px;}
+.mm131-about-item p{font-size:13px;color:var(--mm131-muted);margin:0;line-height:1.6;}
+
+/* ============ 焦点内容 ============ */
+.mm131-focus{background:var(--mm131-bg2);border-top:1px solid var(--mm131-line);border-bottom:1px solid var(--mm131-line);}
+.mm131-focus-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:20px;}
+.mm131-card{
+  background:var(--mm131-card);border:1px solid var(--mm131-line);border-radius:var(--mm131-radius);
+  overflow:hidden;transition:.26s;display:flex;flex-direction:column;
+}
+.mm131-card:hover{transform:translateY(-5px);border-color:#36475f;box-shadow:0 18px 40px rgba(0,0,0,.36);}
+.mm131-thumb{position:relative;overflow:hidden;background:#0d1219;}
+.mm131-thumb img{width:100%;aspect-ratio:16/9;object-fit:cover;transition:.4s;}
+.mm131-card:hover .mm131-thumb img{transform:scale(1.05);}
+.mm131-thumb-tag{
+  position:absolute;left:10px;top:10px;z-index:2;font-size:11.5px;font-weight:700;
+  background:rgba(10,14,20,.78);color:var(--mm131-accent);padding:3px 10px;border-radius:20px;
+  backdrop-filter:blur(4px);
+}
+.mm131-thumb-dur{
+  position:absolute;right:10px;bottom:10px;z-index:2;font-size:11.5px;
+  background:rgba(10,14,20,.82);color:#dfe7f3;padding:2px 8px;border-radius:6px;
+}
+.mm131-thumb-tri{
+  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:2;
+  width:52px;height:52px;border-radius:50%;background:rgba(245,185,66,.9);
+  display:grid;place-items:center;opacity:0;transition:.26s;
+}
+.mm131-thumb-tri::after{
+  content:"";width:0;height:0;border-left:14px solid #141a24;
+  border-top:9px solid transparent;border-bottom:9px solid transparent;margin-left:3px;
+}
+.mm131-card:hover .mm131-thumb-tri{opacity:1;}
+.mm131-card-body{padding:16px 17px 18px;display:flex;flex-direction:column;flex:1;}
+.mm131-card-body h3{font-size:16.5px;line-height:1.45;margin-bottom:8px;font-weight:700;}
+.mm131-card.mm131-card-lg .mm131-card-body h3{font-size:20px;}
+.mm131-card-desc{font-size:13.5px;color:var(--mm131-muted);margin-bottom:14px;flex:1;}
+.mm131-card-meta{
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  font-size:12.5px;color:#7f8da3;border-top:1px solid #212c3d;padding-top:12px;
+}
+.mm131-author{display:flex;align-items:center;gap:8px;}
+.mm131-avatar{
+  width:26px;height:26px;border-radius:50%;flex:none;display:grid;place-items:center;
+  font-size:12px;font-weight:800;color:#101720;
+}
+.mm131-card-acts{display:flex;gap:12px;}
+.mm131-act{display:inline-flex;align-items:center;gap:4px;font-size:12.5px;color:#8b9ab0;transition:.18s;}
+.mm131-act svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.9;}
+.mm131-act:hover{color:var(--mm131-accent);}
+.mm131-act.mm131-liked{color:#ff6b8a;}
+.mm131-act.mm131-liked svg{fill:#ff6b8a;stroke:#ff6b8a;}
+.mm131-act.mm131-saved{color:var(--mm131-accent);}
+.mm131-act.mm131-saved svg{fill:var(--mm131-accent);stroke:var(--mm131-accent);}
+
+/* ============ 视频流 ============ */
+.mm131-feed-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:30px;}
+.mm131-filter{display:flex;gap:8px;flex-wrap:wrap;}
+.mm131-chip{
+  font-size:13px;padding:7px 15px;border-radius:30px;border:1px solid var(--mm131-line);
+  color:var(--mm131-muted);background:#141d29;transition:.2s;
+}
+.mm131-chip:hover{border-color:#3a4c66;color:var(--mm131-text);}
+.mm131-chip.mm131-chip-on{background:var(--mm131-accent);border-color:var(--mm131-accent);color:#141a24;font-weight:700;}
+.mm131-feed-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.mm131-empty{
+  display:none;text-align:center;padding:52px 0;color:var(--mm131-muted);font-size:14.5px;
+}
+.mm131-empty.mm131-show{display:block;}
+
+/* ============ 专题 ============ */
+.mm131-series{background:var(--mm131-bg2);border-top:1px solid var(--mm131-line);border-bottom:1px solid var(--mm131-line);}
+.mm131-series-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
+.mm131-series-card{
+  position:relative;border-radius:var(--mm131-radius);overflow:hidden;
+  border:1px solid var(--mm131-line);aspect-ratio:3/4;transition:.26s;display:block;
+}
+.mm131-series-card:nth-child(1){grid-column:span 2;aspect-ratio:auto;}
+.mm131-series-card img{width:100%;height:100%;object-fit:cover;transition:.45s;}
+.mm131-series-card:hover img{transform:scale(1.06);}
+.mm131-series-card:hover{border-color:#3a4c66;}
+.mm131-series-mask{
+  position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;
+  padding:18px;background:linear-gradient(transparent 32%,rgba(8,12,18,.94));
+}
+.mm131-series-mask em{
+  font-style:normal;font-size:11.5px;font-weight:700;color:var(--mm131-accent2);
+  letter-spacing:1px;margin-bottom:6px;
+}
+.mm131-series-mask h3{font-size:17px;line-height:1.4;margin-bottom:6px;}
+.mm131-series-card:nth-child(1) .mm131-series-mask h3{font-size:24px;}
+.mm131-series-mask p{font-size:12.5px;color:#aab7cb;line-height:1.55;}
+
+/* ============ 创作者 ============ */
+.mm131-creators-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
+.mm131-creator{
+  background:var(--mm131-card);border:1px solid var(--mm131-line);border-radius:var(--mm131-radius);
+  padding:22px 18px;text-align:center;transition:.26s;
+}
+.mm131-creator:hover{transform:translateY(-4px);border-color:#3a4c66;}
+.mm131-creator-avatar{
+  width:64px;height:64px;border-radius:50%;margin:0 auto 13px;
+  display:grid;place-items:center;font-size:24px;font-weight:900;color:#101720;
+  box-shadow:0 8px 20px rgba(0,0,0,.3);
+}
+.mm131-creator h3{font-size:16px;margin-bottom:3px;}
+.mm131-creator .mm131-cr-field{font-size:12.5px;color:var(--mm131-accent);margin-bottom:10px;}
+.mm131-creator p{font-size:13px;color:var(--mm131-muted);line-height:1.6;margin-bottom:14px;min-height:60px;}
+.mm131-creator-nums{display:flex;justify-content:center;gap:20px;font-size:12px;color:#7f8da3;border-top:1px solid #212c3d;padding-top:12px;}
+.mm131-creator-nums b{display:block;color:var(--mm131-text);font-size:14px;}
+.mm131-creator-more{
+  margin-top:14px;font-size:13px;color:var(--mm131-accent);font-weight:600;
+  border:1px solid rgba(245,185,66,.35);border-radius:8px;padding:6px 0;width:100%;transition:.2s;
+}
+.mm131-creator-more:hover{background:rgba(245,185,66,.1);}
+
+/* ============ 影像墙 ============ */
+.mm131-wall{background:var(--mm131-bg2);border-top:1px solid var(--mm131-line);border-bottom:1px solid var(--mm131-line);}
+.mm131-wall-grid{display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:120px;gap:14px;}
+.mm131-wall-item{
+  position:relative;border-radius:13px;overflow:hidden;border:1px solid var(--mm131-line);
+}
+.mm131-wall-item img{width:100%;height:100%;object-fit:cover;transition:.4s;}
+.mm131-wall-item:hover img{transform:scale(1.07);}
+.mm131-wall-item span{
+  position:absolute;left:0;right:0;bottom:0;padding:22px 11px 9px;font-size:12px;
+  color:#dbe4f1;background:linear-gradient(transparent,rgba(8,12,18,.9));
+  opacity:0;transition:.28s;
+}
+.mm131-wall-item:hover span{opacity:1;}
+.mm131-wall-item:nth-child(1){grid-column:span 3;grid-row:span 2;}
+.mm131-wall-item:nth-child(2){grid-column:span 3;grid-row:span 1;}
+.mm131-wall-item:nth-child(3){grid-column:span 3;grid-row:span 1;}
+.mm131-wall-item:nth-child(4){grid-column:span 2;grid-row:span 2;}
+.mm131-wall-item:nth-child(5){grid-column:span 2;grid-row:span 2;}
+.mm131-wall-item:nth-child(6){grid-column:span 2;grid-row:span 2;}
+
+/* ============ 故事随笔 ============ */
+.mm131-stories-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.mm131-story{
+  background:var(--mm131-card);border:1px solid var(--mm131-line);border-radius:var(--mm131-radius);
+  padding:24px 22px;transition:.26s;
+}
+.mm131-story:hover{border-color:#3a4c66;transform:translateY(-3px);}
+.mm131-story-mark{font-size:26px;color:var(--mm131-accent);line-height:1;margin-bottom:10px;font-weight:900;}
+.mm131-story h3{font-size:16.5px;margin-bottom:10px;line-height:1.45;}
+.mm131-story p{font-size:13.5px;color:var(--mm131-muted);line-height:1.8;}
+.mm131-story-foot{margin-top:15px;font-size:12.5px;color:#7f8da3;display:flex;justify-content:space-between;}
+
+/* ============ 评价 ============ */
+.mm131-reviews{background:var(--mm131-bg2);border-top:1px solid var(--mm131-line);border-bottom:1px solid var(--mm131-line);}
+.mm131-reviews-grid{columns:3;column-gap:18px;}
+.mm131-review{
+  break-inside:avoid;background:var(--mm131-card);border:1px solid var(--mm131-line);
+  border-radius:14px;padding:18px;margin-bottom:18px;
+}
+.mm131-review-head{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+.mm131-review-head b{font-size:13.5px;display:block;}
+.mm131-review-head small{font-size:11.5px;color:#7f8da3;}
+.mm131-review p{font-size:13.5px;color:#bac6d8;line-height:1.75;}
+.mm131-review .mm131-stars{color:var(--mm131-accent);font-size:12px;margin-top:9px;letter-spacing:2px;}
+
+/* ============ 灵感 / 排行 双栏 ============ */
+.mm131-duo{display:grid;grid-template-columns:1fr 1fr;gap:34px;align-items:start;}
+.mm131-panel{
+  background:var(--mm131-card);border:1px solid var(--mm131-line);border-radius:var(--mm131-radius);
+  padding:26px 24px;
+}
+.mm131-panel h3{font-size:19px;margin-bottom:6px;}
+.mm131-panel .mm131-panel-sub{font-size:13px;color:var(--mm131-muted);margin-bottom:20px;}
+.mm131-idea{
+  display:flex;gap:13px;padding:13px 0;border-bottom:1px dashed #253145;
+}
+.mm131-idea:last-child{border-bottom:none;padding-bottom:0;}
+.mm131-idea-num{
+  flex:none;width:28px;height:28px;border-radius:8px;background:#1e2a3c;color:var(--mm131-accent);
+  display:grid;place-items:center;font-size:13px;font-weight:800;
+}
+.mm131-idea b{font-size:14px;display:block;margin-bottom:2px;}
+.mm131-idea span{font-size:12.5px;color:var(--mm131-muted);line-height:1.6;}
+.mm131-rank-row{
+  display:flex;align-items:center;gap:12px;padding:11px 0;border-bottom:1px solid #212c3d;
+}
+.mm131-rank-row:last-child{border-bottom:none;}
+.mm131-rank-no{
+  flex:none;width:24px;font-size:15px;font-weight:900;color:#5d6c84;text-align:center;
+}
+.mm131-rank-row:nth-child(-n+3) .mm131-rank-no{color:var(--mm131-accent);}
+.mm131-rank-row b{font-size:14px;flex:1;font-weight:600;}
+.mm131-rank-row .mm131-rank-num{font-size:12.5px;color:var(--mm131-accent2);font-weight:700;}
+
+/* ============ 动态/更新日志 ============ */
+.mm131-news{background:var(--mm131-bg2);border-top:1px solid var(--mm131-line);border-bottom:1px solid var(--mm131-line);}
+.mm131-news-list{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+.mm131-news-item{
+  background:#141d29;border:1px solid var(--mm131-line);border-radius:13px;padding:20px;
+  border-left:3px solid var(--mm131-accent);
+}
+.mm131-news-item time{font-size:12px;color:var(--mm131-accent2);font-weight:600;}
+.mm131-news-item h3{font-size:15.5px;margin:7px 0 8px;line-height:1.45;}
+.mm131-news-item p{font-size:13px;color:var(--mm131-muted);line-height:1.7;}
+
+/* ============ 合作 ============ */
+.mm131-partners{display:flex;flex-wrap:wrap;gap:14px;}
+.mm131-partner{
+  flex:1 1 170px;border:1px solid var(--mm131-line);border-radius:12px;
+  padding:18px 16px;text-align:center;font-size:14px;font-weight:700;color:#a9b6c9;
+  background:#141d29;transition:.22s;letter-spacing:.5px;
+}
+.mm131-partner:hover{border-color:var(--mm131-accent);color:var(--mm131-accent);}
+.mm131-partner small{display:block;font-size:11.5px;font-weight:400;color:#6d7b91;margin-top:4px;letter-spacing:0;}
+
+/* ============ FAQ ============ */
+.mm131-faq{max-width:880px;margin:0 auto;}
+.mm131-faq details{
+  background:var(--mm131-card);border:1px solid var(--mm131-line);border-radius:12px;
+  margin-bottom:12px;overflow:hidden;
+}
+.mm131-faq summary{
+  cursor:pointer;padding:16px 20px;font-size:15px;font-weight:600;list-style:none;
+  display:flex;justify-content:space-between;align-items:center;gap:14px;
+}
+.mm131-faq summary::-webkit-details-marker{display:none;}
+.mm131-faq summary::after{
+  content:"+";font-size:20px;color:var(--mm131-accent);font-weight:400;transition:.2s;flex:none;
+}
+.mm131-faq details[open] summary::after{content:"–";}
+.mm131-faq details[open] summary{color:var(--mm131-accent);}
+.mm131-faq .mm131-faq-body{padding:0 20px 18px;font-size:14px;color:var(--mm131-muted);line-height:1.8;}
+
+/* ============ 投稿/联系 CTA ============ */
+.mm131-cta{
+  background:
+    radial-gradient(700px 300px at 82% 20%,rgba(245,185,66,.18),transparent 60%),
+    radial-gradient(600px 300px at 10% 90%,rgba(61,220,151,.12),transparent 60%),
+    #141d2a;
+  border:1px solid var(--mm131-line);border-radius:22px;padding:48px 42px;
+  display:grid;grid-template-columns:1.2fr .8fr;gap:36px;align-items:center;
+}
+.mm131-cta h2{font-size:clamp(22px,2.8vw,30px);line-height:1.35;margin-bottom:12px;}
+.mm131-cta p{font-size:14.5px;color:#aebbce;margin-bottom:22px;}
+.mm131-cta-acts{display:flex;flex-wrap:wrap;gap:12px;}
+.mm131-cta-info{font-size:13.5px;color:#9aa8bd;line-height:2;}
+.mm131-cta-info b{color:var(--mm131-text);font-weight:600;}
+
+/* ============ 页脚 ============ */
+.mm131-footer{background:#0a0f16;border-top:1px solid var(--mm131-line);padding:56px 0 0;}
+.mm131-footer-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1.2fr;gap:34px;padding-bottom:40px;}
+.mm131-footer h4{font-size:14px;color:var(--mm131-text);margin-bottom:14px;letter-spacing:1px;}
+.mm131-footer p{font-size:13px;color:#7d8ba0;line-height:1.9;}
+.mm131-footer li{font-size:13px;color:#7d8ba0;margin-bottom:9px;}
+.mm131-footer li a:hover{color:var(--mm131-accent);}
+.mm131-footer-brand{display:flex;align-items:center;gap:10px;margin-bottom:14px;}
+.mm131-footer-bottom{
+  border-top:1px solid #1a2331;padding:18px 0 26px;font-size:12.5px;color:#5f6d82;
+  display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
+}
+
+/* ============ 回到顶部 ============ */
+.mm131-top{
+  position:fixed;right:22px;bottom:26px;z-index:90;width:46px;height:46px;border-radius:50%;
+  background:var(--mm131-accent);color:#141a24;display:grid;place-items:center;
+  box-shadow:0 10px 26px rgba(0,0,0,.4);opacity:0;pointer-events:none;transition:.25s;
+}
+.mm131-top.mm131-top-show{opacity:1;pointer-events:auto;}
+.mm131-top:hover{filter:brightness(1.08);transform:translateY(-3px);}
+.mm131-top svg{width:20px;height:20px;stroke:#141a24;stroke-width:2.4;fill:none;}
+
+/* ============ Toast / 弹窗 ============ */
+.mm131-toast{
+  position:fixed;left:50%;bottom:38px;transform:translate(-50%,20px);z-index:200;
+  background:#1e2a3c;border:1px solid #34455f;color:var(--mm131-text);
+  padding:11px 22px;border-radius:11px;font-size:13.5px;opacity:0;pointer-events:none;transition:.28s;
+  box-shadow:0 16px 40px rgba(0,0,0,.5);
+}
+.mm131-toast.mm131-toast-show{opacity:1;transform:translate(-50%,0);}
+.mm131-modal{
+  position:fixed;inset:0;z-index:210;background:rgba(6,9,14,.78);backdrop-filter:blur(5px);
+  display:none;align-items:center;justify-content:center;padding:22px;
+}
+.mm131-modal.mm131-modal-open{display:flex;}
+.mm131-modal-box{
+  background:var(--mm131-card);border:1px solid #2b3purple;border:1px solid #2b3a52;border-radius:18px;
+  width:100%;max-width:480px;padding:28px 26px;position:relative;
+  max-height:86vh;overflow:auto;
+}
+.mm131-modal-box h3{font-size:19px;margin-bottom:6px;}
+.mm131-modal-box .mm131-modal-sub{font-size:13px;color:var(--mm131-muted);margin-bottom:18px;}
+.mm131-modal-close{
+  position:absolute;right:16px;top:14px;font-size:22px;color:#7f8da3;line-height:1;
+}
+.mm131-modal-close:hover{color:var(--mm131-accent);}
+.mm131-field{margin-bottom:14px;}
+.mm131-field label{display:block;font-size:13px;color:#a9b6c9;margin-bottom:6px;}
+.mm131-field input,.mm131-field textarea{
+  width:100%;background:#111924;border:1px solid #29384d;border-radius:9px;
+  padding:10px 13px;font-size:14px;color:var(--mm131-text);outline:none;font-family:inherit;
+}
+.mm131-field input:focus,.mm131-field textarea:focus{border-color:var(--mm131-accent);}
+.mm131-field textarea{resize:vertical;min-height:88px;}
+
+/* ============ 响应式 ============ */
+@media (max-width:1080px){
+  .mm131-nav{display:none;}
+  .mm131-burger{display:grid;}
+  .mm131-search{width:210px;}
+  .mm131-hero-inner{grid-template-columns:1fr;gap:44px;}
+  .mm131-hero-side{right:8px;}
+  .mm131-about-grid{grid-template-columns:1fr;gap:34px;}
+  .mm131-about-art img{aspect-ratio:16/9;}
+  .mm131-focus-grid{grid-template-columns:1fr 1fr;}
+  .mm131-card-lg{grid-column:span 2;}
+  .mm131-feed-grid{grid-template-columns:repeat(2,1fr);}
+  .mm131-series-grid{grid-template-columns:repeat(2,1fr);}
+  .mm131-series-card:nth-child(1){grid-column:span 2;}
+  .mm131-creators-grid{grid-template-columns:repeat(2,1fr);}
+  .mm131-stories-grid{grid-template-columns:1fr;}
+  .mm131-reviews-grid{columns:2;}
+  .mm131-duo{grid-template-columns:1fr;}
+  .mm131-news-list{grid-template-columns:1fr;}
+  .mm131-cta{grid-template-columns:1fr;padding:36px 26px;}
+  .mm131-footer-grid{grid-template-columns:1fr 1fr;gap:28px;}
+  .mm131-wall-grid{grid-auto-rows:100px;}
+}
+@media (max-width:720px){
+  html{scroll-padding-top:118px;}
+  .mm131-header-inner{height:62px;gap:14px;}
+  .mm131-search{display:none;}
+  .mm131-hero-inner{padding:44px 22px 56px;}
+  .mm131-stats{grid-template-columns:1fr 1fr;}
+  .mm131-hero-side{display:none;}
+  .mm131-hero-chip{left:8px;}
+  .mm131-section{padding:54px 0;}
+  .mm131-focus-grid,.mm131-feed-grid,.mm131-series-grid,.mm131-creators-grid{grid-template-columns:1fr;}
+  .mm131-card-lg{grid-column:span 1;}
+  .mm131-series-card:nth-child(1){grid-column:span 1;}
+  .mm131-series-card{aspect-ratio:4/3;}
+  .mm131-series-card:nth-child(1){aspect-ratio:4/3;}
+  .mm131-reviews-grid{columns:1;}
+  .mm131-about-list{grid-template-columns:1fr;}
+  .mm131-footer-grid{grid-template-columns:1fr;}
+  .mm131-wall-grid{grid-template-columns:repeat(2,1fr);grid-auto-rows:110px;}
+  .mm131-wall-item:nth-child(n){grid-column:span 1;grid-row:span 1;}
+  .mm131-wall-item:nth-child(1){grid-column:span 2;grid-row:span 2;}
+  .mm131-cta-acts .mm131-btn{flex:1 1 100%;justify-content:center;}
+  .mm131-top{right:14px;bottom:16px;}
+}
+</style>
+<script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</head>
+<body>
+
+<!-- ===== 吸顶区域：公告条 + 页头 ===== -->
+<div class="mm131-sticky-wrap">
+  <div class="mm131-notice" role="region" aria-label="站内更新公告">
+    <div class="mm131-notice-inner">
+      <span class="mm131-notice-badge">官方发布</span>
+      <div class="mm131-notice-track">
+        <span>「城市漫游·第三季」<b>11月24日</b>上线，首批8支原创短片来自6座城市</span>
+        <span>创作者激励计划第7期开放报名，<b>投稿入口</b>已开启</span>
+        <span>影像墙新增「冬日手作」专题，<b>12月1日</b>开启投票挑战</span>
+        <span>「城市漫游·第三季」<b>11月24日</b>上线，首批8支原创短片来自6座城市</span>
+        <span>创作者激励计划第7期开放报名，<b>投稿入口</b>已开启</span>
+        <span>影像墙新增「冬日手作」专题，<b>12月1日</b>开启投票挑战</span>
+      </div>
+    </div>
+  </div>
+
+  <header class="mm131-header">
+    <div class="mm131-header-inner">
+      <a class="mm131-logo" href="#mm131-top" aria-label="mm131爽 首页">
+        <span class="mm131-logo-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M8 5l12 7-12 7z" fill="#141a24"/></svg>
+        </span>
+        <span class="mm131-logo-text">mm131爽<em>IMAGINE STUDIO</em></span>
+      </a>
+      <nav class="mm131-nav" aria-label="主导航">
+        <a href="#mm131-top" class="mm131-nav-active">首页</a>
+        <a href="#mm131-focus">视频焦点</a>
+        <a href="#mm131-series">专题企划</a>
+        <a href="#mm131-creators">创作者</a>
+        <a href="#mm131-news">企业动态</a>
+        <a href="#mm131-faq">帮助</a>
+        <a href="#mm131-contact">联系</a>
+      </nav>
+      <div class="mm131-search">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        <input id="mm131-search-input" type="search" placeholder="搜索视频、创作者、话题…" aria-label="站内搜索">
+        <button id="mm131-search-btn" type="button">搜索</button>
+      </div>
+      <button class="mm131-burger" id="mm131-burger" type="button" aria-label="展开导航菜单" aria-expanded="false"><span></span></button>
+    </div>
+    <nav class="mm131-mobile-menu" id="mm131-mobile-menu" aria-label="移动端导航">
+      <a href="#mm131-top">首页</a>
+      <a href="#mm131-focus">视频焦点</a>
+      <a href="#mm131-series">专题企划</a>
+      <a href="#mm131-feed">热门影像</a>
+      <a href="#mm131-creators">创作者</a>
+      <a href="#mm131-news">企业动态</a>
+      <a href="#mm131-faq">帮助</a>
+      <a href="#mm131-contact">联系与投稿</a>
+    </nav>
+  </header>
+</div>
+
+<main id="mm131-top">
+
+  <!-- ===== 首屏 ===== -->
+  <section class="mm131-hero" aria-labelledby="mm131-h1-title">
+    <div class="mm131-hero-inner">
+      <div>
+        <span class="mm131-hero-tag"><i></i>品牌官方网站 · 持续运营中</span>
+        <h1 class="mm131-h1" id="mm131-h1-title">mm131爽</h1>
+        <p class="mm131-hero-lead">
+          mm131爽是一个以原创影像为核心的视频品牌与内容社区。我们把镜头交给真实生活，
+          记录城市街角、手作工坊、傍晚厨房与清晨小路，为创作者搭建值得信赖的品质内容生态。
+        </p>
+        <div class="mm131-hero-actions">
+          <a class="mm131-btn mm131-btn-primary" href="#mm131-feed">
+            浏览热门影像
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a class="mm131-btn mm131-btn-ghost" href="#mm131-contact">创作者投稿入口</a>
+          <a class="mm131-btn mm131-btn-ghost" href="#mm131-series">查看专题企划</a>
+        </div>
+        <div class="mm131-stats">
+          <div class="mm131-stat"><b data-mm131-count="12860">12,860</b><span>原创影像作品</span></div>
+          <div class="mm131-stat"><b data-mm131-count="2340">2,340</b><span>签约与入驻创作者</span></div>
+          <div class="mm131-stat"><b data-mm131-count="96">96</b><span>城市影像合作点</span></div>
+        </div>
+      </div>
+      <div class="mm131-hero-visual">
+        <div class="mm131-hero-main">
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 500'%3E%3Cdefs%3E%3ClinearGradient id='g1' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%231b2a48'/%3E%3Cstop offset='0.55' stop-color='%232b3f66'/%3E%3Cstop offset='1' stop-color='%23f5b942'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='800' height='500' fill='url(%23g1)'/%3E%3Ccircle cx='620' cy='130' r='86' fill='%23f5b942' opacity='0.35'/%3E%3Cpath d='M0 380 Q200 300 400 360 T800 330 L800 500 L0 500 Z' fill='%230e1622' opacity='0.85'/%3E%3Cpath d='M0 420 Q240 350 460 410 T800 400 L800 500 L0 500 Z' fill='%23090e16'/%3E%3Crect x='90' y='120' width='18' height='180' fill='%23ffffff' opacity='0.22'/%3E%3Crect x='140' y='160' width='12' height='140' fill='%23ffffff' opacity='0.15'/%3E%3Ccircle cx='320' cy='200' r='7' fill='%233ddc97'/%3E%3C/svg%3E" alt="mm131爽品牌主视觉：暮色中的城市轮廓与暖色光斑">
+          <div class="mm131-hero-play" aria-hidden="true"><i></i></div>
+        </div>
+        <div class="mm131-hero-chip">本周编辑推荐 <b>8 支</b> 原创短片</div>
+        <div class="mm131-hero-side">
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 250'%3E%3Crect width='400' height='250' fill='%23223a4f'/%3E%3Ccircle cx='300' cy='70' r='38' fill='%236c8cff' opacity='0.5'/%3E%3Crect x='40' y='120' width='120' height='80' rx='10' fill='%233ddc97' opacity='0.6'/%3E%3Crect x='180' y='150' width='80' height='50' rx='8' fill='%23f5b942' opacity='0.7'/%3E%3Cpath d='M0 210 h400 v40 h-400z' fill='%230d1520'/%3E%3C/svg%3E" alt="城市漫游专题封面：蓝绿色街区与抽象建筑色块">
+          <p>城市漫游 · 第三季<br>11月24日上线</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 关键词深度解析 ===== -->
+  <section class="mm131-section mm131-about" aria-labelledby="mm131-about-title">
+    <div class="mm131-wrap">
+      <div class="mm131-section-head">
+        <span class="mm131-kicker">Brand Story</span>
+        <h2 class="mm131-h2" id="mm131-about-title">关于 mm131爽：一个以“爽”为节奏的影像品牌</h2>
+        <p class="mm131-sub">从一支短片的气质说起，理解这个品牌为何被创作者长期留在收藏夹里。</p>
+      </div>
+      <div class="mm131-about-grid">
+        <figure class="mm131-about-art">
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 500'%3E%3Cdefs%3E%3ClinearGradient id='g2' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%232c1f3f'/%3E%3Cstop offset='1' stop-color='%230f1520'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='400' height='500' fill='url(%23g2)'/%3E%3Ccircle cx='200' cy='190' r='90' fill='%23f5b942' opacity='0.75'/%3E%3Ccircle cx='200' cy='190' r='130' fill='none' stroke='%23f5b942' stroke-width='1.5' opacity='0.35'/%3E%3Cpath d='M120 330 q80 -50 160 0 v120 h-160 z' fill='%231a2434'/%3E%3Crect x='60' y='70' width='8' height='60' fill='%233ddc97' opacity='0.6'/%3E%3Crect x='330' y='90' width='6' height='44' fill='%236c8cff' opacity='0.7'/%3E%3C/svg%3E" alt="mm131爽品牌插画：暖色圆轮与深色底座构成的影像符号">
+          <figcaption>品牌视觉语言：暖色光源 + 深色画框，让画面先有情绪，再有信息。</figcaption>
+        </figure>
+        <div class="mm131-about-body">
+          <p>
+            “mm131爽”这个名字，最初来自创始团队的一句内部暗号——把一件小事看得很爽，把一段日常记录得很爽。
+            2019 年，团队带着三台相机和一间不到二十平米的剪辑室开始做原创短片，明确了一条朴素原则：
+            <strong>不追热点，追真实的观感</strong>。七年过去，mm131爽 已经成长为一个集原创制作、创作者孵化与影像社区运营于一体的视频品牌，
+            并通过官方网站持续发布每一期精品内容。
+          </p>
+          <p>
+            作为一个垂直领域的内容平台，我们更愿意把资源放在“能被看完”的作品上。平台内的影像大体分为三条主线：
+            城市探索与在地文化、生活方式与手作日常、人物访谈与品牌故事。每条主线都有固定的编辑与审片流程，
+            从选题会、分镜审核到成片校对，保证内容生态里的每一支短片都经得起回看。
+            <strong>企业级的内容标准，社区化的表达方式</strong>，是 mm131爽 在同类平台中形成口碑的关键。
+          </p>
+          <p>
+            我们相信“爽”不是刺激，而是流畅。观众点开一支视频，前三秒知道要发生什么，三十秒后愿意继续，
+            三分钟后有所得——这个节奏感，是 mm131爽 对内容品质的基本要求。
+            因此平台长期坚持原创、正版、高清的素材规范，也坚持把创作者的署名与作品权益写进每一份合作协议。
+            在行业领先的审核机制之外，我们更看重多元与包容：允许慢镜头，允许长镜头，允许一句话都不说，只让画面自己说话。
+          </p>
+          <p>
+            mm131爽 的社区由创作者与观众共同构成。2026 年，我们上线了创作者成长计划、城市影像合作点与每季度一次的影像挑战，
+            通过比赛、报名、投票、上传等轻量机制，让更多人从观众变成作者。
+            <strong>陪伴与成长</strong>不是口号，而是平台每年新增两千余支作品背后真实发生的故事。
+            我们希望这个品牌始终保有温度，也保有专业度——让人愿意在这里停留，也愿意在这里被看见。
+          </p>
+          <div class="mm131-about-list">
+            <div class="mm131-about-item"><h4>原创优先</h4><p>所有主推内容均为平台首发或创作者原创授权作品，标注来源与署名。</p></div>
+            <div class="mm131-about-item"><h4>品质审核</h4><p>三重审片机制，画质、音轨、字幕、版权四项逐条过检再上线。</p></div>
+            <div class="mm131-about-item"><h4>创作者共益</h4><p>播放分成、专题邀约、线下共创三条路径并行，收益透明可查。</p></div>
+            <div class="mm131-about-item"><h4>社区温度</h4><p>评论区人工维护，鼓励具体、友善、有信息量的表达与讨论。</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 焦点内容 ===== -->
+  <section class="mm131-section mm131-focus" id="mm131-focus" aria-labelledby="mm131-focus-title">
+    <div class="mm131-wrap">
+      <div class="mm131-section-head">
+        <span class="mm131-kicker">Focus</span>
+        <h2 class="mm131-h2" id="mm131-focus-title">本周视频焦点</h2>
+        <p class="mm131-sub">编辑团队从近两周新上线的作品中挑出六支，按观看完成度与口碑综合排序。</p>
+      </div>
+      <div class="mm131-focus-grid">
+        <article class="mm131-card mm131-card-lg">
+          <div class="mm131-thumb">
+            <span class="mm131-thumb-tag">编辑首选</span>
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 360'%3E%3Cdefs%3E%3ClinearGradient id='g3' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%231d3350'/%3E%3Cstop offset='1' stop-color='%23f0a53a'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='640' height='360' fill='url(%23g3)'/%3E%3Cpath d='M0 250 l120 -50 l110 40 l130 -70 l140 60 l140 -30 v170 h-640z' fill='%23101a26' opacity='0.8'/%3E%3Ccircle cx='520' cy='80' r='44' fill='%23fff5d6' opacity='0.85'/%3E%3Crect x='60' y='90' width='6' height='90' fill='%23ffffff' opacity='0.2'/%3E%3C/svg%3E" alt="视频封面：清晨港口的橙色霞光与剪影人群">
+            <span class="mm131-thumb-dur">12:48</span>
+            <span class="mm131-thumb-tri" aria-hidden="true"></span>
+          </div>
+          <div class="mm131-card-body">
+            <h3>清晨五点半的港口，一座城市最早的呼吸</h3>
+            <p class="mm131-card-desc">跟拍三位凌晨开工的人：鱼市理货、轮渡检票、早餐铺和面。没有旁白，只留下蒸汽、海水与脚步声，构成城市探索里最有质感的一段清晨。</p>
+            <div class="mm131-card-meta">
+              <span class="mm131-author"><span class="mm131-avatar" style="background:linear-gradient(135deg,#f5b942,#ff7a4d)">陈</span>陈屿</span>
+              <span class="mm131-card-acts">
+                <button class="mm131-act" type="button" data-mm131-like aria-label="点赞"><svg viewBox="0 0 24 24"><path d="M7 22V10l5-8 1 1v6h6a2 2 0 0 1 2 2l-2 9a2 2 0 0 1-2 1H7z"/></svg><b>1,284</b></button>
+                <button class="mm131-act" type="button" data-mm131-save aria-label="收藏"><svg viewBox="0 0 24 24"><path d="M6 3h12v18l-6-4-6 4z"/></svg></button>
+              </span>
+            </div>
+          </div>
+        </article>
+
+        <article class="mm131-card">
+          <div class="mm131-thumb">
+            <span class="mm131-thumb-tag">手作日常</span>
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 480 270'%3E%3Crect width='480' height='270' fill='%23322a22'/%3E%3Ccircle cx='150' cy='130' r='70' fill='%23d8a05a' opacity='0.55'/%3E%3Crect x='250' y='80' width='150' height='110' rx='12' fill='%234a3b2c'/%3E%3Cpath d='M280 120 h90 M280 145 h60' stroke='%23e8cfa3' stroke-width='7' stroke-linecap='round'/%3E%3Cpath d='M0 210 h480 v60 h-480z' fill='%231d1712'/%3E%3C/svg%3E" alt="视频封面：陶艺工坊里的陶轮与暖色灯光">
+            <span class="mm131-thumb-dur">08:15</span>
+            <span class="mm131-thumb-tri" aria-hidden="true"></span>
+          </div>
+          <div class="mm131-card-body">
+            <h3>在陶轮前坐满三个小时，手会替你说完心里的话</h3>
+            <p class="mm131-card-desc">一位做了十二年陶器的师傅，聊了聊失败率与手感的关系。</p>
+            <div class="mm131-card-meta">
+              <span class="mm131-author"><span class="mm131-avatar" style="background:linear-gradient(135deg,#d8a05a,#8a5a2b)">陶</span>陶土笔记</span>
+              <span class="mm131-card-acts">
+                <button class="mm131-act" type="button" data-mm131-like aria-label="点赞"><svg viewBox="0 0 24 24"><path d="M7 22V10l5-8 1 1v6h6a2 2 0 0 1 2 2l-2 9a2 2 0 0 1-2 1H7z"/></svg><b>842</b></button>
+                <button class="mm131-act" type="button" data-mm131-save aria-label="收藏"><svg viewBox="0 0 24 24"><path d="M6 3h12v18l-6-4-6 4z"/></svg></button>
+              </span>
+            </div>
+          </div>
+        </article>
+
+        <article class="mm131-card">
+          <div class="mm131-thumb">
+            <span class="mm131-thumb-tag">人物访谈</span>
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 480 270'%3E%3Crect width='480' height='270' fill='%23202d3d'/%3E%3Ccircle cx='240' cy='110' r='52' fill='%236c8cff' opacity='0.65'/%3E%3Crect x='180' y='160' width='120' height='80' rx='40' fill='%23141d28'/%3E%3Crect x='60' y='60' width='60' height='4' fill='%233ddc97'/%3E%3Crect x='60' y='74' width='38' height='4' fill='%233ddc97' opacity='0.6'/%3E%3Crect x='360' y='60' width='60' height='4' fill='%23f5b942'/%3E%3C/svg%3E" alt="视频封面：访谈场景中的蓝色人物剪影与几何线条">
+            <span class="mm131-thumb-dur">18:02</span>
+            <span class="mm131-thumb-tri" aria-hidden="true"></span>
+          </div>
+          <div class="mm131-card-body">
+            <h3>他说自己不会讲故事，但一开口就是二十年</h3>
+            <p class="mm131-card-desc">镜头前的口述史，一位老放映员谈胶片、谈观众，也谈离开。</p>
+            <div class="mm131-card-meta">
+              <span class="mm131-author"><span class="mm131-avatar" style="background:linear-gradient(135deg,#6c8cff,#3ddc97)">林</span>林深访谈</span>
+              <span class="mm131-card-acts">
+                <button class="mm131-act" type="button" data-mm131-like aria-label="点赞"><svg viewBox="0 0 24 24"><path d="M7 22V10l5-8 1 1v6h6a2 2 0 0 1 2 2l-2 9a2 2 0 0 1-2 1H7z"/></svg><b>1,067</b></button>
+                <button class="mm131-act" type="button" data-mm131-save aria-label="收藏"><svg viewBox="0 0 24 24"><path d="M6 3h12v18l-6-4-6 4z"/></svg></button>
+              </span>
+            </div>
+          </div>
+        </article>
+
+        <article class="mm131-card">
+          <div class="mm131-thumb">
+            <span class="mm131-thumb-tag">教程干货</span>
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 480 270'%3E%3Crect width='480' height='270' fill='%23182626'/%3E%3Crect x='50' y='50' width='180' height='170' rx='10' fill='%23255a4c'/%3E%3Crect x='260' y='50' width='170' height='80' rx='10' fill='%233ddc97' opacity='0.7'/%3E%3Crect x='260' y='148' width='170' height='72' rx='10' fill='%23f5b942' opacity='0.55'/%3E%3Cpath d='M290 90 h110 M290 185 h80' stroke='%230d1a16' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E" alt="视频封面：剪辑时间线示意图与绿色分块面板">
+            <span class="mm131-thumb-dur">14:20</span>
+            <span class="mm131-thumb-tri" aria-hidden="true"></span>
+          </div>
+          <div class="mm131-card-body">
+            <h3>三分半的短片，我为什么剪了四十版</h3>
+            <p class="mm131-card-desc">从素材整理到节奏校准，一次完整的剪辑思路拆解。</p>
+            <div class="mm131-card-meta">
+              <span class="mm131-author"><span class="mm131-avatar" style="background:linear-gradient(135deg,#3ddc97,#255a4c)">剪</span>剪辑小满</span>
+              <span class="mm131-card-acts">
+                <button class="mm131-act" type="button" data-mm131-like aria-label="点赞"><svg viewBox="0 0 24 24"><path d="M7 22V10l5-8 1 1v6h6a2 2 0 0 1 2 2l-2 9a2 2 0 0 1-2 1H7z"/></svg><b>1,530</b></button>
+                <button class="mm131-act" type="button" data-mm131-save aria-label="收藏"><svg viewBox="0 0 24 24"><path d="M6 3h12v18l-6-4-6 4z"/></svg></button>
+              </span>
+            </div>
+          </div>
+        </article>
+
+        <article class="mm131-card">
+          <div class="mm131-thumb">
+            <span class="mm131-thumb-tag">治愈影像</span>
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 480 270'%3E%3Cdefs%3E%3ClinearGradient id='g4' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%235b4a6e'/%3E%3Cstop offset='1' stop-color='%23c98a8a'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='480' height='270' fill='url(%23g4)'/%3E%3Cpath d='M0 190 q120 -60 240 -10 t240 -20 v110 h-480z' fill='%23292433' opacity='0.8'/%3E%3Ccircle cx='370' cy='70' r='34' fill='%23ffe3c2' opacity='0.8'/%3E%3Cpath d='M40 60 q40 -20 80 0' stroke='%23ffe3c2' stroke-width='3' fill='none' opacity='0.5'/%3E%3C/svg%3E" alt="视频封面：暮色山脊与粉紫色天空">
+            <span class="mm131-thumb-dur">06:37</span>
+            <span class="mm131-thumb-tri" aria-hidden="true"></span>
+          </div>
+          <div class="mm131-card-body">
+            <h3>把一小时的山路，压成六分钟的风声</h3>
+            <p class="mm131-card-desc">户外记录者的轻徒步影像实验：只留环境音，不留台词。</p>
+            <div class="mm131-card-meta">
+              <span class="mm131-author"><span class="mm131-avatar" style="background:linear-gradient(135deg,#c98a8a,#5b4a6e)">阿</span>阿岚在路上</span>
+              <span class="mm131-card-acts">
+                <button class="mm131-act" type="button" data-mm131-like aria-label="点赞"><svg viewBox="0 0 24 24"><path d="M7 22V10l5-8 1 1v6h6a2 2 0 0 1 2 2l-2 9a2 2 0 0 1-2 1H7z"/></svg><b>698</b></button>
+                <button class="mm131-act" type="button" data-mm131-save aria-label="收藏"><svg viewBox="0 0 24 24"><path d="M6 3h12v18l-6-4-6 4z"/></svg></button>
+              </span>
+            </div>
+          </div>
+        </article>
+
+        <article class="mm131-card">
+          <div class="mm131-thumb">
+            <span class="mm131-thumb-tag">美食烹饪</span>
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 480 270'%3E%3Crect width='480' height='270' fill='%233d1f1a'/%3E%3Ccircle cx='240' cy='150' r='82' fill='%23e0783c' opacity='0.75'/%3E%3Cpath d='M170 150 a70 70 0 0 1 140 0' fill='none' stroke='%23ffd9a8' stroke-width='8'/%3E%3Cpath d='M205 60 q15 -30 30 0 q15 -22 30 0' stroke='%23ffd9a8' stroke-width='5' fill='none' opacity='0.7'/%3E%3Crect x='60' y='210' width='360' height='8' rx='4' fill='%23f3b96b' opacity='0.5'/%3E%3C/svg%3E" alt="视频封面：灶台火焰与冒着热气的砂锅">
+            <span class="mm131-thumb-dur">11:04</span>
+            <span class="mm131-thumb-tri" aria-hidden="true"></span>
+          </div>
+          <div class="mm131-card-body">
+            <h3>一锅老汤的第七次复盘，这次终于不腥了</h3>
+            <p class="mm131-card-desc">从选材到火候，把家里那口锅讲到有据可依。</p>
+            <div class="mm131-card-meta">
+              <span class="mm131-author"><span class="mm131-avatar" style="background:linear-gradient(135deg,#e0783c,#3d1f1a)">灶</span>灶边日记</span>
+              <span class="mm131-card-acts">
+                <button class="mm131-act" type="button" data-mm131-like aria-label="点赞"><svg viewBox="0 0 24 24"><path d="M7 22V10l5-8 1 1v6h6a2 2 0 0 1 2 2l-2 9a2 2 0 0 1-2 1H7z"/></svg><b>913</b></button>
+                <button class="mm131-act" type="button" data-mm131-save aria-label="收藏"><svg viewBox="0 0 24 24"><path d="M6 3h12v18l-6-4-6 4z"/></svg></button>
+              </span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 热门视频流 + 标签筛选 ===== -->
+  <section class="mm131-section" id="mm131-feed" aria-labelledby="mm131-feed-title">
+    <div class="mm131-wrap">
+      <div class="mm131-feed-head">
+        <div class="mm131-section-head" style="margin-bottom:0;">
+          <span class="mm131-kicker">Community Feed</span>
+          <h2 class="mm131-h2" id="mm131-feed-title">社区热门影像</h2>
+          <p class="mm131-sub">按标签筛选，看看同好们最近在拍什么、在聊什么。</p>
+        </div>
+        <div class="mm131-filter" role="group" aria-label="内容标签筛选">
+          <button class="mm131-chip mm131-chip-on" type="button" data-mm131-filter="all">全部</button>
+          <button class="mm131-chip" type="button" data-mm131-filter="城市">城市探索</button>
+          <button class="mm131-chip" type="button" data-mm131-filter="手作">手作日常</button>
+          <button class="mm131-chip" type="button" data-mm131-filter="访谈">人物访谈</button>
+          <button class="mm131-chip" type="button" data-mm131-filter="教程">教程干货</button>
+          <button class="mm131-chip" type="button" data-mm131-filter="户外">户外活动</button>
+        </div>
+      </div>
+
+      <div class="mm131-feed-grid" id="mm131-feed-grid">
+        <article class="mm131-card" data-mm131-cat="城市">
+          <div class="mm131-thumb">
+            <span class="mm131-thumb-tag">城市探索</span>
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 480 270'%3E%3Crect width='480' height='270' fill='%231f2c40'/%3E%3Crect x='40' y='80' width='60' height='150' fill='%232f4463'/%3E%3Crect x='120' y='50' width='70' height='180' fill='%23263a55'/%3E%3Crect x='210' y='95' width='54' height='135' fill='%23334968'/%3E%3Crect x='284' y='40' width='80' height='190' fill='%232a3e5c'/%3E%3Crect x='384' y='105' width='56' height='125' fill='%23314665'/%3E%3Ccircle cx='330' cy='80' r='16' fill='%23f5b942'/%3E%3C/svg%3E" alt="视频封面：夜色中的街区楼宇与亮灯的窗">
+            <span class="mm131-thumb-dur">09:12</span>
+            <span class="mm131-thumb-tri" aria-hidden="true"></span>
+          </div>
+          <div class="mm131-card-body">
+            <h3>走过十三条巷子，画出一张会迷路的城市地图</h3>
+            <p class="mm131-card-desc">不导航，只靠记忆与路牌，重新认识住过五年的街区。</p>
+            <div class="mm131-card-meta">
+              <span class="mm131-author"><span class="mm131-avatar" style="background:linear-gradient(135deg,#6c8cff,#263a55)">周</span>周末走读</span>
+              <span class="mm131-card-acts">
+                <button class="mm131-act" type="button" data-mm131-like aria-label="点赞"><svg viewBox="0 0 24 24"><path d="M7 22V10l5-8 1 1v6h6a2 2 0 0 1 2 2l-2 9a2 2 0 0 1-2 1H7z"/></svg><b>576</b></button>
+                <button class="mm131-act" type="button" data-mm131-save aria-label="收藏"><svg viewBox="0 0 24 24"><path d="M6 3h12v18l-6-4-6 4z"/></svg></button>
+              </span>
+            </div>
+          </div>
+        </article>
+
+        <article class="mm131-card" data-mm131-cat="手作">
+          <div class="mm131-thumb">
+            <span class="mm131-thumb-tag">手作日常</span>
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 480 270'%3E%3Crect width='480' height='270' fill='%23333a2a'/%3E%3Crect x='70' y='90' width='150' height='110' rx='8' fill='%238ca36b' opacity='0.7'/%3E%3Ccircle cx='330' cy='140' r='60' fill='%23d8c07a' opacity='0.6'/%3E%3Cpath d='M280 60 q60 30 120 0' stroke='%23e8dcb0' stroke-width='4' fill='none'/%3E%3Cpath d='M70 230 h340' stroke='%23393f2d' stroke-width='10'/%3E%3C/svg%3E" alt="视频封面：植物编织作品与草绿色手工台">
+            <span class="mm131-thumb-dur">07:41</span>
+            <span class="mm131-thumb-tri" aria-hidden="true"></span>
+          </div>
+          <div class="mm131-card-body">
+            <h3>用一把旧剪刀和干草，编出能装四季的篮子</h3>
+            <p class="mm131-card-desc">从割草、晾晒到收口，一条完整的手作流程记录。</p>
+            <div class="mm131-card-meta">
+              <span class="mm131-author"><span class="mm131-avatar" style="background:linear-gradient(135deg,#8ca36b,#333a2a)">禾</span>禾木手作</span>
+              <span class="mm131-card-acts">
+                <button class="mm131-act" type="button" data-mm131-like aria-label="点赞"><svg viewBox="0 0 24 24"><path d="M7 22V10l5-8 1 1v6h6a2 2 0 0 1 2 2l-2 9a2 2 0 0 1-2 1H7z"/></svg><b>1,012</b></button>
+                <button class="mm131-act" type="button" data-mm131-save aria-label="收藏"><svg viewBox="0 0 24 24"><path d="M6 3h12v18l-6-4-6 4z"/></svg></button>
+              </span>
+            </div>
+          </div>
+        </article>
+
+        <article class="mm131-card" data-mm131-cat="访谈">
+          <div class="mm131-thumb">
+            <span class="mm131-thumb-tag">人物访谈</span>
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 480 270'%3E%3Crect width='480' height='270' fill='%232a2233'/%3E%3Ccircle cx='150' cy='130' r='58' fill='%23b07ad8' opacity='0.65'/%3E%3Crect x='240' y='80' width='170' height='16' rx='8' fill='%234b3a5e'/%3E%3Crect x='240' y='112' width='130' height='16' rx='8' fill='%234b3a5e' opacity='0.7'/%3E%3Crect x='240' y='144' width='150' height='16' rx='8' fill='%234b3a5e' opacity='0.5'/%3E%3C/svg%3E" alt="视频封面：紫色调访谈构图与对话气泡">
+            <span class="mm131-thumb-dur">22:30</span>
+            <span class="mm131-thumb-tri" aria-hidden="true"></span>
+          </div>
+          <div class="mm131-card-body">
+            <h3>在书店值了十年夜班，他记住了每位熟客的选书口味</h3>
+            <p class="mm131-card-desc">一场从晚上九点聊到打烊的深度对话。</p>
+            <div class="mm131-card-meta">
+              <span class="mm131-author"><span class="mm131-avatar" style="background:linear-gradient(135deg,#b07ad8,#2a2233)">沈</span>沈记夜谈</span>
+              <span class="mm131-card-acts">
+                <button class="mm131-act" type="button" data-mm131-like aria-label="点赞"><svg viewBox="0 0 24 24"><path d="M7 22V10l5-8 1 1v6h6a2 2 0 0 1 2 2l-2 9a2 2 0 0 1-2 1H7z"/></svg><b>1,338</b></button>
+                <button class="mm131-act" type="button" data-mm131-save aria-label="收藏"><svg viewBox="0 0 24 24"><path d="M6 3h12v18l-6-4-6 4z"/></svg></button>
+              </span>
+            </div>
+          </div>
+        </article>
+
+        <article class="mm131-card" data-mm131-cat="教程">
+          <div class="mm131-thumb">
+            <span class="mm131-thumb-tag">教程干货</span>
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 480 270'%3E%3Crect width='480' height='270' fill='%231c2a35'/%3E%3Crect x='60' y='60' width='200' height='150' rx='8' fill='%232d4a5e'/%3E%3Cpath d='M90 100 h140 M90 130 h100 M90 160 h120' stroke='%2377c8d8' stroke-width='7' stroke-linecap='round'/%3E%3Ccircle cx='360' cy='135' r='62' fill='%233ddc97' opacity='0.5'/%3E%3C/svg%3E" alt="视频封面：蓝色调脚本分镜文档与绿色标注圆">
+            <span class="mm131-thumb-dur">10:06</span>
+            <span class="mm131-thumb-tri" aria-hidden="true"></span>
+          </div>
+          <div class="mm131-card-body">
+            <h3>不会写脚本？先学会把一件事拆成五个镜头</h3>
+            <p class="mm131-card-desc">面向新手的分镜思路，附一份可以直接套用的模板。</p>
+            <div class="mm131-card-meta">
+              <span class="mm131-author"><span class="mm131-avatar" style="background:linear-gradient(135deg,#77c8d8,#1c2a35)">镜</span>镜头课堂</span>
+              <span class="mm131-card-acts">
+                <button class="mm131-act" type="button" data-mm131-like aria-label="点赞"><svg viewBox="0 0 24 24"><path d="M7 22V10l5-8 1 1v6h6a2 2 0 0 1 2 2l-2 9a2 2 0 0 1-2 1H7z"/></svg><b>2,104</b></button>
+                <button class="mm131-act" type="button" data-mm131-save aria-label="收藏"><svg viewBox="0 0 24 24"><path d="M6 3h12v18l-6-4-6 4z"/></svg></button>
+              </span>
+            </div>
+          </div>
+        </article>
+
+        <article class="mm131-card" data-mm131-cat="户外">
+          <div class="mm131-thumb">
+            <span class="mm131-thumb-tag">户外活动</span>
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 480 270'%3E%3Cdefs%3E%3ClinearGradient id='g5' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%234a6b7a'/%3E%3Cstop offset='1' stop-color='%23b7cfb0'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='480' height='270' fill='url(%23g5)'/%3E%3Cpath d='M0 200 l90 -80 l70 50 l90 -70 l120 80 l110 -50 v90 h-480z' fill='%232f4a44'/%3E%3Cpath d='M0 220 h480 v50 h-480z' fill='%231f322e'/%3E%3Ccircle cx='390' cy='60' r='26' fill='%23f3e6b8'/%3E%3C/svg%3E" alt="视频封面：晨雾中的山脊与登山小径">
+            <span class="mm131-thumb-dur">13:55</span>
+            <span class="mm131-thumb-tri" aria-hidden="true"></span>
+          </div>
+          <div class="mm131-card-body">
+            <h3>海拔一千二百米的第一缕雾，比日出更值得等</h3>
+            <p class="mm131-card-desc">一次清晨出发的轻量徒步，记录路况、补给与拍摄花絮。</p>
+            <div class="mm131-card-meta">
+              <span class="mm131-author"><span class="mm131-avatar" style="background:linear-gradient(135deg,#b7cfb0,#2f4a44)">鹿</span>鹿野漫行</span>
+              <span class="mm131-card-acts">
+                <button class="mm131-act" type="button" data-mm131-like aria-label="点赞"><svg viewBox="0 0 24 24"><path d="M7 22V10l5-8 1 1v6h6a2 2 0 0 1 2 2l-2 9a2 2 0 0 1-2 1H7z"/></svg><b>845</b></button>
+                <button class="mm131-act" type="button" data-mm131-save aria-label="收藏"><svg viewBox="0 0 24 24"><path d="M6 3h12v18l-6-4-6 4z"/></svg></button>
+              </span>
+            </div>
+          </div>
+        </article>
+
+        <article class="mm131-card" data-mm131-cat="城市">
+          <div class="mm131-thumb">
+            <span class="mm131-thumb-tag">城市探索</span>
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 480 270'%3E%3Crect width='480' height='270' fill='%232b2230'/%3E%3Crect x='0' y='170' width='480' height='100' fill='%231a141f'/%3E%3Ccircle cx='110' cy='100' r='40' fill='%23ffb86b' opacity='0.7'/%3E%3Ccircle cx='250' cy='120' r='28' fill='%23ffb86b' opacity='0.45'/%3E%3Ccircle cx='390' cy='90' r='34' fill='%23ffb86b' opacity='0.55'/%3E%3Cpath d='M60 200 h360' stroke='%23423344' stroke-width='8' stroke-linecap='round'/%3E%3C/svg%3E" alt="视频封面：夜市灯火与暖色串灯光斑">
+            <span class="mm131-thumb-dur">16:20</span>
+            <span class="mm131-thumb-tri" aria-hidden="true"></span>
+          </div>
+          <div class="mm131-card-body">
+            <h3>夜市收摊前的四十分钟，是最接近生活本身的样子</h3>
+            <p class="mm131-card-desc">摊主的最后一锅、最后的对话和最安静的街道。</p>
+            <div class="mm131-card-meta">
+              <span class="mm131-author"><span class="mm131-avatar" style="background:linear-gradient(135deg,#ffb86b,#2b2230)">夜</span>夜行记录</span>
+              <span class="mm131-card-acts">
+                <button class="mm131-act" type="button" data-mm131-like aria-label="点赞"><svg viewBox="0 0 24 24"><path d="M7 22V10l5-8 1 1v6h6a2 2 0 0 1 2 2l-2 9a2 2 0 0 1-2 1H7z"/></svg><b>1,690</b></button>
+                <button class="mm131-act" type="button" data-mm131-save aria-label="收藏"><svg viewBox="0 0 24 24"><path d="M6 3h12v18l-6-4-6 4z"/></svg></button>
+              </span>
+            </div>
+          </div>
+        </article>
+
+        <article class="mm131-card" data-mm131-cat="手作">
+          <div class="mm131-thumb">
+            <span class="mm131-thumb-tag">手作日常</span>
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 480 270'%3E%3Crect width='480' height='270' fill='%23242c3a'/%3E%3Crect x='90' y='70' width='130' height='150' rx='10' fill='%23475d80'/%3E%3Crect x='250' y='110' width='140' height='110' rx='10' fill='%238da3c4' opacity='0.6'/%3E%3Cpath d='M120 110 h70 M120 140 h50 M280 150 h80' stroke='%23dfe8f5' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E" alt="视频封面：蓝灰色调装帧工艺与纸样草图">
+            <span class="mm131-thumb-dur">08:50</span>
+            <span class="mm131-thumb-tri" aria-hidden="true"></span>
+          </div>
+          <div class="mm131-card-body">
+            <h3>给一本手账做封面，从选布到上胶都自己来</h3>
+            <p class="mm131-card-desc">材料清单、成本核算、翻车环节全部如实呈现。</p>
+            <div class="mm131-card-meta">
+              <span class="mm131-author"><span class="mm131-avatar" style="background:linear-gradient(135deg,#8da3c4,#242c3a)">纸</span>纸上工作间</span>
+              <span class="mm131-card-acts">
+                <button class="mm131-act" type="button" data-mm131-like aria-label="点赞"><svg viewBox="0 0 24 24"><path d="M7 22V10l5-8 1 1v6h6a2 2 0 0 1 2 2l-2 9a2 2 0 0 1-2 1H7z"/></svg><b>734</b></button>
+                <button class="mm131-act" type="button" data-mm131-save aria-label="收藏"><svg viewBox="0 0 24 24"><path d="M6 3h12v18l-6-4-6 4z"/></svg></button>
+              </span>
+            </div>
+          </div>
+        </article>
+
+        <article class="mm131-card" data-mm131-cat="教程">
+          <div class="mm131-thumb">
+            <span class="mm131-thumb-tag">教程干货</span>
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 480 270'%3E%3Crect width='480' height='270' fill='%23182226'/%3E%3Crect x='70' y='80' width='150' height='110' rx='8' fill='%232c4a4f'/%3E%3Cpath d='M100 120 h90 M100 150 h60' stroke='%235fe3c2' stroke-width='7' stroke-linecap='round'/%3E%3Cpolyline points='280,180 320,120 360,150 410,80' fill='none' stroke='%235fe3c2' stroke-width='8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" alt="视频封面：青绿色数据曲线与内容运营面板">
+            <span class="mm131-thumb-dur">12:02</span>
+            <span class="mm131-thumb-tri" aria-hidden="true"></span>
+          </div>
+          <div class="mm131-card-body">
+            <h3>发布前必看：影响完播率的四个看不见的细节</h3>
+            <p class="mm131-card-desc">封面、前六秒、音量曲线与结尾导流，逐项拆解。</p>
+            <div class="mm131-card-meta">
+              <span class="mm131-author"><span class="mm131-avatar" style="background:linear-gradient(135deg,#5fe3c2,#182226)">运</span>运营手记</span>
+              <span class="mm131-card-acts">
+                <button class="mm131-act" type="button" data-mm131-like aria-label="点赞"><svg viewBox="0 0 24 24"><path d="M7 22V10l5-8 1 1v6h6a2 2 0 0 1 2 2l-2 9a2 2 0 0 1-2 1H7z"/></svg><b>1,455</b></button>
+                <button class="mm131-act" type="button" data-mm131-save aria-label="收藏"><svg viewBox="0 0 24 24"><path d="M6 3h12v18l-6-4-6 4z"/></svg></button>
+              </span>
+            </div>
+          </div>
+        </article>
+
+        <article class="mm131-card" data-mm131-cat="户外">
+          <div class="mm131-thumb">
+            <span class="mm131-thumb-tag">户外活动</span>
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 480 270'%3E%3Crect width='480' height='270' fill='%231c3238'/%3E%3Cpath d='M0 190 q120 -60 240 -20 t240 -30 v130 h-480z' fill='%232e5a5f'/%3E%3Cpath d='M0 220 q140 -40 260 0 t220 -10 v60 h-480z' fill='%233f7a72' opacity='0.8'/%3E%3Ccircle cx='120' cy='80' r='30' fill='%23cfe8d8' opacity='0.6'/%3E%3Cpath d='M200 70 q40 20 80 0' stroke='%23cfe8d8' stroke-width='3' fill='none' opacity='0.6'/%3E%3C/svg%3E" alt="视频封面：湖边露营帐篷与晨光水面">
+            <span class="mm131-thumb-dur">19:38</span>
+            <span class="mm131-thumb-tri" aria-hidden="true"></span>
+          </div>
+          <div class="mm131-card-body">
+            <h3>两天的湖边露营，装备只带了一个背包</h3>
+            <p class="mm131-card-desc">轻量化清单分享，以及一次说得出口的失败尝试。</p>
+            <div class="mm131-card-meta">
+              <span class="mm131-author"><span class="mm131-avatar" style="background:linear-gradient(135deg,#3f7a72,#1c3238)">野</span>野外清单</span>
+              <span class="mm131-card-acts">
+                <button class="mm131-act" type="button" data-mm131-like aria-label="点赞"><svg viewBox="0 0 24 24"><path d="M7 22V10l5-8 1 1v6h6a2 2 0 0 1 2 2l-2 9a2 2 0 0 1-2 1H7z"/></svg><b>602</b></button>
+                <button class="mm131-act" type="button" data-mm131-save aria-label="收藏"><svg viewBox="0 0 24 24"><path d="M6 3h12v18l-6-4-6 4z"/></svg></button>
+              </span>
+            </div>
+          </div>
+        </article>
+      </div>
+      <p class="mm131-empty" id="mm131-empty">暂无匹配的影像，换个标签再试试。</p>
+    </div>
+  </section>
+
+  <!-- ===== 专题企划 ===== -->
+  <section class="mm131-section mm131-series" id="mm131-series" aria-labelledby="mm131-series-title">
+    <div class="mm131-wrap">
+      <div class="mm131-section-head">
+        <span class="mm131-kicker">Series</span>
+        <h2 class="mm131-h2" id="mm131-series-title">正在更新的专题企划</h2>
+        <p class="mm131-sub">由编辑与创作者共同策划，一季一个主题，持续更新中。</p>
+      </div>
+      <div class="mm131-series-grid">
+        <a class="mm131-series-card" href="#mm131-feed">
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 400'%3E%3Cdefs%3E%3ClinearGradient id='g6' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%231b2b45'/%3E%3Cstop offset='1' stop-color='%234b6ea8'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='600' height='400' fill='url(%23g6)'/%3E%3Crect x='60' y='150' width='90' height='200' fill='%232b4266'/%3E%3Crect x='180' y='100' width='70' height='250' fill='%23335688'/%3E%3Crect x='280' y='170' width='100' height='180' fill='%232b4266'/%3E%3Crect x='410' y='80' width='120' height='270' fill='%233a5c8f'/%3E%3Ccircle cx='470' cy='130' r='20' fill='%23f5b942'/%3E%3C/svg%3E" alt="城市漫游第三季专题封面：蓝调城市天际线">
+          <div class="mm131-series-mask">
+            <em>更新中 · 第 3 季</em>
+            <h3>城市漫游：把街道当成剧本</h3>
+            <p>6 座城市、12 位创作者、8 支原创短片，从一条巷子开始认识一座城。</p>
+          </div>
+        </a>
+        <a class="mm131-series-card" href="#mm131-feed">
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 520'%3E%3Crect width='400' height='520' fill='%233c2f24'/%3E%3Ccircle cx='200' cy='200' r='100' fill='%23d9a862' opacity='0.55'/%3E%3Cpath d='M90 340 q110 -70 220 0 v180 h-220z' fill='%23241c15'/%3E%3Crect x='150' y='90' width='10' height='80' fill='%23e8c99a' opacity='0.6'/%3E%3C/svg%3E" alt="冬日手作专题封面：陶器与暖棕色工作台">
+          <div class="mm131-series-mask">
+            <em>12月1日开启投票</em>
+            <h3>冬日手作：慢一点做得更好</h3>
+            <p>陶、木、纸、布，四种材质，四种握住时间的方式。</p>
+          </div>
+        </a>
+        <a class="mm131-series-card" href="#mm131-feed">
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 520'%3E%3Crect width='400' height='520' fill='%23252638'/%3E%3Ccircle cx='200' cy='170' r='70' fill='%236c8cff' opacity='0.5'/%3E%3Crect x='80' y='290' width='240' height='16' rx='8' fill='%23485170'/%3E%3Crect x='100' y='330' width='200' height='16' rx='8' fill='%23485170' opacity='0.7'/%3E%3Crect x='130' y='370' width='140' height='16' rx='8' fill='%23485170' opacity='0.5'/%3E%3C/svg%3E" alt="对话专题封面：蓝色头像与对话文本条">
+          <div class="mm131-series-mask">
+            <em>每双周更新</em>
+            <h3>一期一会：和普通人聊深一点</h3>
+            <p>不做人物简介，只做一次坐下来、不开倍速的长谈。</p>
+          </div>
+        </a>
+        <a class="mm131-series-card" href="#mm131-feed">
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 520'%3E%3Crect width='400' height='520' fill='%231f3330'/%3E%3Cpath d='M0 340 q100 -70 200 -20 t200 -40 v240 h-400z' fill='%233a6b58'/%3E%3Ccircle cx='120' cy='150' r='44' fill='%23cfe8b8' opacity='0.6'/%3E%3Cpath d='M240 120 q50 30 100 0' stroke='%23cfe8b8' stroke-width='4' fill='none' opacity='0.6'/%3E%3C/svg%3E" alt="野外清单专题封面：绿色山野与浅色天空">
+          <div class="mm131-series-mask">
+            <em>长期企划</em>
+            <h3>野外清单：把准备做在前面</h3>
+            <p>装备、路线、天气与安全，户外创作者的经验合集。</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 创作者矩阵 ===== -->
+  <section class="mm131-section" id="mm131-creators" aria-labelledby="mm131-creators-title">
+    <div class="mm131-wrap">
+      <div class="mm131-section-head">
+        <span class="mm131-kicker">Creators</span>
+        <h2 class="mm131-h2" id="mm131-creators-title">平台创作者</h2>
+        <p class="mm131-sub">他们来自不同城市、不同职业，共同构成了 mm131爽 的内容底色。</p>
+      </div>
+      <div class="mm131-creators-grid">
+        <article class="mm131-creator">
+          <div class="mm131-creator-avatar" style="background:linear-gradient(135deg,#f5b942,#ff7a4d)">陈</div>
+          <h3>陈屿</h3>
+          <p class="mm131-cr-field">城市探索 · 纪实</p>
+          <p>拍港口、拍鱼市、拍凌晨的街。相信最好的剧本在街上，最好的演员是普通人。</p>
+          <div class="mm131-creator-nums">
+            <span><b>128</b>作品</span><span><b>18.6万</b>关注</span>
+          </div>
+          <button class="mm131-creator-more" type="button" data-mm131-author="陈屿|城市探索 · 纪实|拍港口、拍鱼市、拍凌晨的街。相信最好的剧本在街上，最好的演员是普通人。|128 支作品 / 18.6 万关注">查看创作者资料</button>
+        </article>
+        <article class="mm131-creator">
+          <div class="mm131-creator-avatar" style="background:linear-gradient(135deg,#d8a05a,#8a5a2b)">禾</div>
+          <h3>禾木手作</h3>
+          <p class="mm131-cr-field">手作日常 · 材料</p>
+          <p>草编、木作与旧物改造。坚持把失败环节也剪进成片，因为过程比结果好看。</p>
+          <div class="mm131-creator-nums">
+            <span><b>96</b>作品</span><span><b>12.4万</b>关注</span>
+          </div>
+          <button class="mm131-creator-more" type="button" data-mm131-author="禾木手作|手作日常 · 材料|草编、木作与旧物改造。坚持把失败环节也剪进成片，因为过程比结果好看。|96 支作品 / 12.4 万关注">查看创作者资料</button>
+        </article>
+        <article class="mm131-creator">
+          <div class="mm131-creator-avatar" style="background:linear-gradient(135deg,#6c8cff,#3ddc97)">林</div>
+          <h3>林深访谈</h3>
+          <p class="mm131-cr-field">人物访谈 · 口述史</p>
+          <p>十年媒体从业者，如今只做一件事：让被访者把话说完，不打断，不引导。</p>
+          <div class="mm131-creator-nums">
+            <span><b>64</b>作品</span><span><b>21.2万</b>关注</span>
+          </div>
+          <button class="mm131-creator-more" type="button" data-mm131-author="林深访谈|人物访谈 · 口述史|十年媒体从业者，如今只做一件事：让被访者把话说完，不打断，不引导。|64 支作品 / 21.2 万关注">查看创作者资料</button>
+        </article>
+        <article class="mm131-creator">
+          <div class="mm131-creator-avatar" style="background:linear-gradient(135deg,#3ddc97,#255a4c)">满</div>
+          <h3>剪辑小满</h3>
+          <p class="mm131-cr-field">教程干货 · 剪辑</p>
+          <p>前广告剪辑师，现全职教学。喜欢把玄学讲成方法论，也喜欢拆自己的片子。</p>
+          <div class="mm131-creator-nums">
+            <span><b>152</b>作品</span><span><b>26.8万</b>关注</span>
+          </div>
+          <button class="mm131-creator-more" type="button" data-mm131-author="剪辑小满|教程干货 · 剪辑|前广告剪辑师，现全职教学。喜欢把玄学讲成方法论，也喜欢拆自己的片子。|152 支作品 / 26.8 万关注">查看创作者资料</button>
+        </article>
+        <article class="mm131-creator">
+          <div class="mm131-creator-avatar" style="background:linear-gradient(135deg,#c98a8a,#5b4a6e)">岚</div>
+          <h3>阿岚在路上</h3>
+          <p class="mm131-cr-field">户外活动 · 治愈影像</p>
+          <p>徒步与轻露营爱好者。常一个人上山，把环境音当主角，把独处拍成礼物。</p>
+          <div class="mm131-creator-nums">
+            <span><b>81</b>作品</span><span><b>9.7万</b>关注</span>
+          </div>
+          <button class="mm131-creator-more" type="button" data-mm131-author="阿岚在路上|户外活动 · 治愈影像|徒步与轻露营爱好者。常一个人上山，把环境音当主角，把独处拍成礼物。|81 支作品 / 9.7 万关注">查看创作者资料</button>
+        </article>
+        <article class="mm131-creator">
+          <div class="mm131-creator-avatar" style="background:linear-gradient(135deg,#e0783c,#3d1f1a)">灶</div>
+          <h3>灶边日记</h3>
+          <p class="mm131-cr-field">美食烹饪 · 家常</p>
+          <p>记录一口锅的第七次复盘。相信家常菜值得被认真对待，也值得被拍得好看。</p>
+          <div class="mm131-creator-nums">
+            <span><b>203</b>作品</span><span><b>15.3万</b>关注</span>
+          </div>
+          <button class="mm131-creator-more" type="button" data-mm131-author="灶边日记|美食烹饪 · 家常|记录一口锅的第七次复盘。相信家常菜值得被认真对待，也值得被拍得好看。|203 支作品 / 15.3 万关注">查看创作者资料</button>
+        </article>
+        <article class="mm131-creator">
+          <div class="mm131-creator-avatar" style="background:linear-gradient(135deg,#b07ad8,#2a2233)">沈</div>
+          <h3>沈记夜谈</h3>
+          <p class="mm131-cr-field">人物访谈 · 深夜场</p>
+          <p>只在晚上开机的访谈作者，偏爱书店、车库与夜班人群的故事。</p>
+          <div class="mm131-creator-nums">
+            <span><b>42</b>作品</span><span><b>8.2万</b>关注</span>
+          </div>
+          <button class="mm131-creator-more" type="button" data-mm131-author="沈记夜谈|人物访谈 · 深夜场|只在晚上开机的访谈作者，偏爱书店、车库与夜班人群的故事。|42 支作品 / 8.2 万关注">查看创作者资料</button>
+        </article>
+        <article class="mm131-creator">
+          <div class="mm131-creator-avatar" style="background:linear-gradient(135deg,#77c8d8,#1c2a35)">镜</div>
+          <h3>镜头课堂</h3>
+          <p class="mm131-cr-field">教程干货 · 入门</p>
+          <p>面向新手的影像教学账号。把专业术语翻译成人话，是这个小栏目的初衷。</p>
+          <div class="mm131-creator-nums">
+            <span><b>118</b>作品</span><span><b>19.5万</b>关注</span>
+          </div>
+          <button class="mm131-creator-more" type="button" data-mm131-author="镜头课堂|教程干货 · 入门|面向新手的影像教学账号。把专业术语翻译成人话，是这个小栏目的初衷。|118 支作品 / 19.5 万关注">查看创作者资料</button>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 影像墙 ===== -->
+  <section class="mm131-section mm131-wall" aria-labelledby="mm131-wall-title">
+    <div class="mm131-wrap">
+      <div class="mm131-section-head">
+        <span class="mm131-kicker">Image Wall</span>
+        <h2 class="mm131-h2" id="mm131-wall-title">用户影像墙</h2>
+        <p class="mm131-sub">来自社区投稿的静帧与封面，每一张都对应一支完整作品。</p>
+      </div>
+      <div class="mm131-wall-grid">
+        <figure class="mm131-wall-item"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 400'%3E%3Cdefs%3E%3ClinearGradient id='w1' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%232a3d5c'/%3E%3Cstop offset='1' stop-color='%23c9874c'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='600' height='400' fill='url(%23w1)'/%3E%3Cpath d='M0 300 h600 v100 h-600z' fill='%23141c28' opacity='0.85'/%3E%3Ccircle cx='470' cy='110' r='38' fill='%23ffe6b8' opacity='0.85'/%3E%3Cpath d='M0 280 q150 -60 300 -10 t300 -30' stroke='%23ffe6b8' stroke-width='2' fill='none' opacity='0.3'/%3E%3C/svg%3E" alt="影像墙作品：海边日落与暖色天际线"><span>海边日落 · 阿岚</span></figure>
+        <figure class="mm131-wall-item"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 260'%3E%3Crect width='600' height='260' fill='%232d3a2c'/%3E%3Crect x='60' y='60' width='170' height='140' rx='8' fill='%235a7550'/%3E%3Ccircle cx='430' cy='130' r='60' fill='%23d8c07a' opacity='0.5'/%3E%3Cpath d='M260 200 h280' stroke='%238fa87e' stroke-width='6' stroke-linecap='round' opacity='0.6'/%3E%3C/svg%3E" alt="影像墙作品：绿色手作工作台与木质素材"><span>手作台 · 禾木</span></figure>
+        <figure class="mm131-wall-item"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 260'%3E%3Crect width='600' height='260' fill='%23322a3f'/%3E%3Ccircle cx='150' cy='130' r='50' fill='%23b07ad8' opacity='0.6'/%3E%3Crect x='260' y='90' width='260' height='12' rx='6' fill='%234c3d5c'/%3E%3Crect x='260' y='124' width='200' height='12' rx='6' fill='%234c3d5c' opacity='0.7'/%3E%3Crect x='260' y='158' width='230' height='12' rx='6' fill='%234c3d5c' opacity='0.5'/%3E%3C/svg%3E" alt="影像墙作品：紫色访谈场景与文字条"><span>夜谈现场 · 沈记</span></figure>
+        <figure class="mm131-wall-item"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'%3E%3Crect width='400' height='400' fill='%231c2b2b'/%3E%3Ccircle cx='200' cy='160' r='84' fill='%233ddc97' opacity='0.45'/%3E%3Cpath d='M0 300 h400 v100 h-400z' fill='%23132020'/%3E%3Cpath d='M120 300 v-80 a80 80 0 0 1 160 0 v80' stroke='%235fe3c2' stroke-width='4' fill='none' opacity='0.6'/%3E%3C/svg%3E" alt="影像墙作品：绿色光影与拱形结构"><span>光影实验 · 剪辑小满</span></figure>
+        <figure class="mm131-wall-item"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'%3E%3Crect width='400' height='400' fill='%233a1f18'/%3E%3Ccircle cx='200' cy='200' r='110' fill='%23e0783c' opacity='0.55'/%3E%3Ccircle cx='200' cy='200' r='70' fill='%23ffd9a8' opacity='0.35'/%3E%3Cpath d='M200 90 v220 M90 200 h220' stroke='%233a1f18' stroke-width='5' opacity='0.4'/%3E%3C/svg%3E" alt="影像墙作品：橙红锅具俯拍与灶台光"><span>灶台俯拍 · 灶边日记</span></figure>
+        <figure class="mm131-wall-item"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'%3E%3Crect width='400' height='400' fill='%23252c3c'/%3E%3Crect x='60' y='100' width='280' height='200' rx='14' fill='%23485a78'/%3E%3Cpath d='M100 160 h200 M100 200 h140 M100 240 h170' stroke='%23dfe8f5' stroke-width='8' stroke-linecap='round'/%3E%3Ccircle cx='330' cy='90' r='26' fill='%23f5b942'/%3E%3C/svg%3E" alt="影像墙作品：蓝灰分镜脚本与黄色标记点"><span>分镜手稿 · 镜头课堂</span></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 故事随笔 ===== -->
+  <section class="mm131-section" aria-labelledby="mm131-story-title">
+    <div class="mm131-wrap">
+      <div class="mm131-section-head">
+        <span class="mm131-kicker">Notes</span>
+        <h2 class="mm131-h2" id="mm131-story-title">创作者随笔</h2>
+        <p class="mm131-sub">影像之外，他们把没剪进去的部分写了下来。</p>
+      </div>
+      <div class="mm131-stories-grid">
+        <article class="mm131-story">
+          <div class="mm131-story-mark">“</div>
+          <h3>拍完港口那支片子，我在车里坐了很久</h3>
+          <p>凌晨五点半的鱼市没有想象中嘈杂，反而很安静。理货的师傅一边摆冰一边跟我聊天，说这行做了二十三年。我问他会不会觉得重复，他说每天的海不一样。这句话我最后没放进片子里，因为怕它显得太像台词。但它确实是我那天最想记住的东西。</p>
+          <div class="mm131-story-foot"><span>陈屿 · 城市探索</span><span>11月12日</span></div>
+        </article>
+        <article class="mm131-story">
+          <div class="mm131-story-mark">“</div>
+          <h3>藤篮的第十次收口，终于没有散</h3>
+          <p>前九次全失败了，一次是草太干，一次是编得太松，还有一次是我剪断了最后一根。第十次成功的时候没有特别激动，只是觉得手腕很酸。后来我把九次失败都剪进了教程里，评论里有人说看哭了，其实我只是觉得，观众有权知道一个东西到底难不难。</p>
+          <div class="mm131-story-foot"><span>禾木手作 · 手作日常</span><span>11月8日</span></div>
+        </article>
+        <article class="mm131-story">
+          <div class="mm131-story-mark">“</div>
+          <h3>一场三个小时的访谈，最终只用了十八分钟</h3>
+          <p>老放映员讲了太多故事，我几乎舍不得剪。但成片必须服务观众，而不是服务我的感动。最后保留的十八分钟里，有三次沉默我没舍得切掉，因为那三次沉默里，他的表情比语言更清楚。做访谈越久越确信：真正的信息常常不在话里。</p>
+          <div class="mm131-story-foot"><span>林深访谈 · 人物访谈</span><span>11月3日</span></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 用户评价 ===== -->
+  <section class="mm131-section mm131-reviews" aria-labelledby="mm131-reviews-title">
+    <div class="mm131-wrap">
+      <div class="mm131-section-head">
+        <span class="mm131-kicker">Reviews</span>
+        <h2 class="mm131-h2" id="mm131-reviews-title">观众怎么说</h2>
+        <p class="mm131-sub">来自评论区和投稿信箱的真实反馈，原文节选。</p>
+      </div>
+      <div class="mm131-reviews-grid">
+        <div class="mm131-review">
+          <div class="mm131-review-head"><span class="mm131-avatar" style="background:linear-gradient(135deg,#f5b942,#ff7a4d)">乔</span><div><b>乔木同学</b><small>关注平台 2 年</small></div></div>
+          <p>最喜欢这里的一点是，封面不吵。很多平台靠夸张标题吸引点击，这里反而是标题很克制，点进去发现内容更扎实。港口那支我连着看了两遍。</p>
+          <div class="mm131-stars">★★★★★</div>
+        </div>
+        <div class="mm131-review">
+          <div class="mm131-review-head"><span class="mm131-avatar" style="background:linear-gradient(135deg,#6c8cff,#3ddc97)">李</span><div><b>李不二</b><small>创作者 · 入驻 8 个月</small></div></div>
+          <p>第一次投稿的时候被退回来两次，编辑给了很具体的修改意见，包括第 14 秒的音量问题。虽然当时有点受打击，但成片质量确实上去了。这种审核我觉得挺难得。</p>
+          <div class="mm131-stars">★★★★★</div>
+        </div>
+        <div class="mm131-review">
+          <div class="mm131-review-head"><span class="mm131-avatar" style="background:linear-gradient(135deg,#3ddc97,#255a4c)">周</span><div><b>周末不加班</b><small>普通观众</small></div></div>
+          <p>下班路上刷一支，七到十五分钟刚好。希望以后能出个“只显示十分钟以内”的筛选，有时候只想看短的。</p>
+          <div class="mm131-stars">★★★★☆</div>
+        </div>
+        <div class="mm131-review">
+          <div class="mm131-review-head"><span class="mm131-avatar" style="background:linear-gradient(135deg,#d8a05a,#8a5a2b)">顾</span><div><b>顾小满</b><small>手作爱好者</small></div></div>
+          <p>禾木的教程是真的敢把失败放出来，这点特别打动我。看完立刻买了草编材料，结果第一次也散了，哈哈。</p>
+          <div class="mm131-stars">★★★★★</div>
+        </div>
+        <div class="mm131-review">
+          <div class="mm131-review-head"><span class="mm131-avatar" style="background:linear-gradient(135deg,#b07ad8,#2a2233)">许</span><div><b>许夜行</b><small>关注平台 4 年</small></div></div>
+          <p>从最早只有几十支片子的阶段看到现在，能感觉到这个品牌一直在做同一件事：把普通人拍得体面。这种坚持很慢，但是可靠。</p>
+          <div class="mm131-stars">★★★★★</div>
+        </div>
+        <div class="mm131-review">
+          <div class="mm131-review-head"><span class="mm131-avatar" style="background:linear-gradient(135deg,#77c8d8,#1c2a35)">韩</span><div><b>韩字清晰</b><small>新手创作者</small></div></div>
+          <p>分镜模板我下载了，确实好用。唯一建议：能否在下载包里附一份字幕样式说明，自己调总要试很多次。</p>
+          <div class="mm131-stars">★★★★☆</div>
+        </div>
+        <div class="mm131-review">
+          <div class="mm131-review-head"><span class="mm131-avatar" style="background:linear-gradient(135deg,#c98a8a,#5b4a6e)">岑</span><div><b>岑野</b><small>户外爱好者</small></div></div>
+          <p>野外清单那期帮我避了一次雷，感谢。希望多讲一点天气突变时的应急，这个对新手真的很重要。</p>
+          <div class="mm131-stars">★★★★★</div>
+        </div>
+        <div class="mm131-review">
+          <div class="mm131-review-head"><span class="mm131-avatar" style="background:linear-gradient(135deg,#e0783c,#3d1f1a)">丁</span><div><b>丁一勺</b><small>美食区常客</small></div></div>
+          <p>灶边日记的老汤系列我从第一集追到现在，第七次终于不腥了，我在屏幕前鼓掌。这种连载感很难得。</p>
+          <div class="mm131-stars">★★★★★</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 灵感 + 榜单 ===== -->
+  <section class="mm131-section" aria-labelledby="mm131-inspire-title">
+    <div class="mm131-wrap">
+      <div class="mm131-section-head">
+        <span class="mm131-kicker">Ideas & Rank</span>
+        <h2 class="mm131-h2" id="mm131-inspire-title">创作灵感与本周榜单</h2>
+        <p class="mm131-sub">给正在犹豫要不要开机的你，一些具体的启动建议。</p>
+      </div>
+      <div class="mm131-duo">
+        <div class="mm131-panel">
+          <h3>开拍前的四个小提示</h3>
+          <p class="mm131-panel-sub">来自编辑组与教程作者的共创笔记。</p>
+          <div class="mm131-idea"><span class="mm131-idea-num">01</span><div><b>先定一个“结束画面”</b><span>很多短片拍到一半卡住，是因为不知道想停在哪。先想好最后一帧，中间会好走很多。</span></div></div>
+          <div class="mm131-idea"><span class="mm131-idea-num">02</span><div><b>把标题写短，把描述写具体</b><span>标题控制在 18 字以内，描述里写清时间、地点、人物关系，完播率通常更稳。</span></div></div>
+          <div class="mm131-idea"><span class="mm131-idea-num">03</span><div><b>环境音比配乐更有说服力</b><span>如果画面是街巷、市场、山林，先保留原声，再决定要不要铺音乐。</span></div></div>
+          <div class="mm131-idea"><span class="mm131-idea-num">04</span><div><b>失败素材别急着删</b><span>观众对真实过程的耐受度远高于想象，翻车往往是最好的互动点。</span></div></div>
+        </div>
+        <div class="mm131-panel">
+          <h3>本周热度榜</h3>
+          <p class="mm131-panel-sub">按播放完成度、收藏与评论质量综合计算。</p>
+          <div class="mm131-rank-row"><span class="mm131-rank-no">1</span><b>清晨五点半的港口</b><span class="mm131-rank-num">热度 98.2</span></div>
+          <div class="mm131-rank-row"><span class="mm131-rank-no">2</span><b>不会写脚本？先拆五个镜头</b><span class="mm131-rank-num">热度 96.4</span></div>
+          <div class="mm131-rank-row"><span class="mm131-rank-no">3</span><b>夜市收摊前的四十分钟</b><span class="mm131-rank-num">热度 94.8</span></div>
+          <div class="mm131-rank-row"><span class="mm131-rank-no">4</span><b>他说自己不会讲故事</b><span class="mm131-rank-num">热度 92.1</span></div>
+          <div class="mm131-rank-row"><span class="mm131-rank-no">5</span><b>陶轮前坐满三个小时</b><span class="mm131-rank-num">热度 89.6</span></div>
+          <div class="mm131-rank-row"><span class="mm131-rank-no">6</span><b>一锅老汤的第七次复盘</b><span class="mm131-rank-num">热度 87.3</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 企业动态 + 合作 ===== -->
+  <section class="mm131-section mm131-news" id="mm131-news" aria-labelledby="mm131-news-title">
+    <div class="mm131-wrap">
+      <div class="mm131-section-head">
+        <span class="mm131-kicker">Updates</span>
+        <h2 class="mm131-h2" id="mm131-news-title">企业动态与官方发布</h2>
+        <p class="mm131-sub">平台运营、创作计划与社区活动的正式公告。</p>
+      </div>
+      <div class="mm131-news-list">
+        <article class="mm131-news-item">
+          <time datetime="2026-11-17">2026 年 11 月 17 日</time>
+          <h3>创作者激励计划第 7 期开放报名</h3>
+          <p>本期面向城市探索与手作两个方向，入选者可获得拍片支持与专题推荐位。投稿入口已在站内开放，报名截止 12 月 8 日。</p>
+        </article>
+        <article class="mm131-news-item">
+          <time datetime="2026-11-11">2026 年 11 月 11 日</time>
+          <h3>「城市漫游 · 第三季」定档 11 月 24 日</h3>
+          <p>本季共 8 支原创短片，覆盖 6 座城市。首映当天将同步上线创作花絮与导演手记，欢迎届时关注官方发布。</p>
+        </article>
+        <article class="mm131-news-item">
+          <time datetime="2026-11-05">2026 年 11 月 5 日</time>
+          <h3>影像墙专题「冬日手作」征集开启</h3>
+          <p>面向全体用户征集手作类静帧与封面，12 月 1 日开启投票，票选前 10 名将获得专题展示与创作者认证机会。</p>
+        </article>
+        <article class="mm131-news-item">
+          <time datetime="2026-10-28">2026 年 10 月 28 日</time>
+          <h3>内容审核细则 2.0 版本上线</h3>
+          <p>新版细则明确了音轨、字幕与素材授权的核查口径，并在帮助中心提供逐条说明，方便创作者对照自查。</p>
+        </article>
+        <article class="mm131-news-item">
+          <time datetime="2026-10-19">2026 年 10 月 19 日</time>
+          <h3>与四家城市影像空间达成合作</h3>
+          <p>平台将与四家线下影像空间共建创作点，提供器材借用与放映场地，合作详情见下方伙伴展示。</p>
+        </article>
+        <article class="mm131-news-item">
+          <time datetime="2026-10-06">2026 年 10 月 6 日</time>
+          <h3>播放数据看板上线，收益明细可查</h3>
+          <p>创作者后台新增播放完成度、观众留存与收益分项，所有数据均支持按周导出，便于复盘与作品优化。</p>
+        </article>
+      </div>
+      <div style="margin-top:36px;">
+        <h3 style="font-size:17px;margin-bottom:16px;color:#c6d2e4;">合作品牌与伙伴</h3>
+        <div class="mm131-partners">
+          <div class="mm131-partner">光屿影像空间<small>器材与场地支持</small></div>
+          <div class="mm131-partner">北纬书店<small>访谈拍摄合作</small></div>
+          <div class="mm131-partner">陶土工坊<small>手作专题共建</small></div>
+          <div class="mm131-partner">鹿野户外社<small>路线与安全顾问</small></div>
+          <div class="mm131-partner">城市观察协会<small>在地内容共建</small></div>
+          <div class="mm131-partner">慢帧剪辑室<small>后期技术支持</small></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FAQ ===== -->
+  <section class="mm131-section" id="mm131-faq" aria-labelledby="mm131-faq-title">
+    <div class="mm131-wrap">
+      <div class="mm131-section-head" style="text-align:center;margin-left:auto;margin-right:auto;">
+        <span class="mm131-kicker" style="justify-content:center;">FAQ</span>
+        <h2 class="mm131-h2" id="mm131-faq-title">常见问题</h2>
+        <p class="mm131-sub">关于平台、投稿与版权，这里有较完整的说明。</p>
+      </div>
+      <div class="mm131-faq">
+        <details open>
+          <summary>如何向 mm131爽 投稿自己的作品？</summary>
+          <div class="mm131-faq-body">点击页面上的“创作者投稿入口”按钮即可打开投稿表单，填写作品标题、简介、时长与素材授权说明。上传完成后进入审核队列，通常 3 到 5 个工作日内给出结果与具体意见。</div>
+        </details>
+        <details>
+          <summary>平台对作品画质和格式有什么要求？</summary>
+          <div class="mm131-faq-body">建议分辨率不低于 1080P，画面比例 16:9 或 4:3，音频采样率 48kHz。请在提交时一并提供原始音轨与字幕文件，便于后期审核与多端适配。高清是平台的基础标准，也是对观众的基本尊重。</div>
+        </details>
+        <details>
+          <summary>作品的版权归属如何界定？</summary>
+          <div class="mm131-faq-body">作品著作权始终归创作者所有。平台仅在获得授权的范围内进行展示、推荐与专题收录，并会完整标注作者署名。任何商业合作均需单独签署协议，未经确认不会使用素材。</div>
+        </details>
+        <details>
+          <summary>审核未通过通常是什么原因？</summary>
+          <div class="mm131-faq-body">常见原因包括：素材授权不明确、画质或音轨不达标、字幕错误较多、内容与申报标签不符。每次退回都会附上具体问题条目，可对照修改后重新提交，不限制修改次数。</div>
+        </details>
+        <details>
+          <summary>创作者可以获得哪些收益与支持？</summary>
+          <div class="mm131-faq-body">目前提供播放分成、专题邀约稿酬与线下共创补贴三条路径。此外，签约创作者可使用平台的器材借用、录音棚与剪辑工位资源，具体额度以当期合作协议为准。</div>
+        </details>
+        <details>
+          <summary>我没有拍摄经验，可以参与吗？</summary>
+          <div class="mm131-faq-body">可以。教程干货板块提供了从分镜、拍摄到剪辑的入门课程，帮助中心也整理了新手常见问题。平台每季度会开放一次新人挑战，适合第一次拍片的朋友参加。</div>
+        </details>
+        <details>
+          <summary>如何参加影像墙专题征集与投票？</summary>
+          <div class="mm131-faq-body">在影像墙专题页提交静帧或封面图，填写作品链接与授权说明即可参与。投票阶段所有注册用户均可参与，每个账号每天可投 3 票，最终结果与专题展示同步公布。</div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 联系/投稿 CTA ===== -->
+  <section class="mm131-section" id="mm131-contact" aria-labelledby="mm131-contact-title">
+    <div class="mm131-wrap">
+      <div class="mm131-cta">
+        <div>
+          <span class="mm131-kicker">Join Us</span>
+          <h2 id="mm131-contact-title">把你的影像，放进 mm131爽 的内容生态</h2>
+          <p>无论是一支七分钟的纪录片，还是一段三十秒的日常，只要足够真实、足够用心，这里都有它的位置。品牌官网长期开放投稿，也欢迎媒体、机构与影像空间洽谈合作。</p>
+          <div class="mm131-cta-acts">
+            <button class="mm131-btn mm131-btn-primary" type="button" data-mm131-open="submit">创作者投稿入口</button>
+            <button class="mm131-btn mm131-btn-ghost" type="button" data-mm131-open="contact">商务与合作咨询</button>
+            <button class="mm131-btn mm131-btn-ghost" type="button" data-mm131-share>复制页面链接</button>
+          </div>
+        </div>
+        <div class="mm131-cta-info">
+          <p><b>合作信箱：</b>partner@mm131shuang.studio</p>
+          <p><b>投稿咨询：</b>周一至周五 10:00 - 19:00</p>
+          <p><b>办公地址：</b>城市影像中心 5 层 · 编辑与运营团队</p>
+          <p><b>响应时效：</b>常规咨询 2 个工作日内回复</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===== 页脚 ===== -->
+<footer class="mm131-footer">
+  <div class="mm131-wrap">
+    <div class="mm131-footer-grid">
+      <div>
+        <div class="mm131-footer-brand">
+          <span class="mm131-logo-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M8 5l12 7-12 7z" fill="#141a24"/></svg>
+          </span>
+          <span class="mm131-logo-text">mm131爽<em>IMAGINE STUDIO</em></span>
+        </div>
+        <p>mm131爽官方网站。以原创影像为核心，深耕城市探索、生活方式与人物访谈三个垂直领域，持续运营一个专业、多元、有温度的品质内容社区。</p>
+        <p style="margin-top:10px;color:#5f6d82;font-size:12.5px;">原创 · 正版 · 高清 · 值得信赖</p>
+      </div>
+      <div>
+        <h4>内容导航</h4>
+        <ul>
+          <li><a href="#mm131-focus">视频焦点</a></li>
+          <li><a href="#mm131-feed">热门影像</a></li>
+          <li><a href="#mm131-series">专题企划</a></li>
+          <li><a href="#mm131-creators">创作者</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>关于平台</h4>
+        <ul>
+          <li><a href="#mm131-about-title">品牌故事</a></li>
+          <li><a href="#mm131-news">企业动态</a></li>
+          <li><a href="#mm131-faq">帮助中心</a></li>
+          <li><a href="#mm131-contact">联系我们</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>社区与投稿</h4>
+        <ul>
+          <li><a href="#mm131-contact">创作者投稿入口</a></li>
+          <li><a href="#mm131-contact">商务合作咨询</a></li>
+          <li><a href="#mm131-faq">投稿规范与版权说明</a></li>
+          <li><a href="#mm131-news">激励计划报名</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="mm131-footer-bottom">
+      <span>© 2019 - 2026 mm131爽官方网站 版权所有 · 持续运营中</span>
+      <span>内容均为原创或经授权发布 · 备案号：影网备 2026-0417 号</span>
+    </div>
+  </div>
+</footer>
+
+<!-- 回到顶部 -->
+<button class="mm131-top" id="mm131-top-btn" type="button" aria-label="回到顶部">
+  <svg viewBox="0 0 24 24"><path d="M12 19V6M6 12l6-6 6 6"/></svg>
+</button>
+
+<!-- Toast -->
+<div class="mm131-toast" id="mm131-toast" role="status" aria-live="polite"></div>
+
+<!-- 通用弹窗 -->
+<div class="mm131-modal" id="mm131-modal" role="dialog" aria-modal="true" aria-labelledby="mm131-modal-title">
+  <div class="mm131-modal-box">
+    <button class="mm131-modal-close" type="button" id="mm131-modal-close" aria-label="关闭">×</button>
+    <h3 id="mm131-modal-title">标题</h3>
+    <p class="mm131-modal-sub" id="mm131-modal-sub">说明</p>
+    <div id="mm131-modal-body"></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---------- 工具：Toast ---------- */
+  var toastEl = document.getElementById("mm131-toast");
+  var toastTimer = null;
+  function toast(msg){
+    toastEl.textContent = msg;
+    toastEl.classList.add("mm131-toast-show");
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function(){
+      toastEl.classList.remove("mm131-toast-show");
+    }, 2200);
+  }
+
+  /* ---------- 移动端导航 ---------- */
+  var burger = document.getElementById("mm131-burger");
+  var mobileMenu = document.getElementById("mm131-mobile-menu");
+  burger.addEventListener("click", function(){
+    var open = mobileMenu.classList.toggle("mm131-open");
+    burger.setAttribute("aria-expanded", open ? "true" : "false");
+  });
+  mobileMenu.addEventListener("click", function(e){
+    if(e.target.tagName === "A"){
+      mobileMenu.classList.remove("mm131-open");
+      burger.setAttribute("aria-expanded", "false");
+    }
+  });
+
+  /* ---------- 搜索反馈 ---------- */
+  var searchInput = document.getElementById("mm131-search-input");
+  var searchBtn = document.getElementById("mm131-search-btn");
+  function doSearch(){
+    var kw = (searchInput.value || "").trim();
+    if(!kw){
+      toast("请输入关键词，例如“手作”或“访谈”");
+      searchInput.focus();
+      return;
+    }
+    var matched = 0;
+    var cards = document.querySelectorAll(".mm131-feed-grid .mm131-card");
+    for(var i = 0; i < cards.length; i++){
+      var title = cards[i].querySelector("h3").textContent;
+      var desc = cards[i].querySelector(".mm131-card-desc").textContent;
+      if(title.indexOf(kw) > -1 || desc.indexOf(kw) > -1){
+        matched++;
+      }
+    }
+    if(matched > 0){
+      toast("与“" + kw + "”相关的热门影像约 " + matched + " 支，已定位到影像区");
+      var feed = document.getElementById("mm131-feed");
+      if(feed) feed.scrollIntoView({behavior:"smooth"});
+    }else{
+      toast("暂未找到与“" + kw + "”直接匹配的影像，为你推荐热门榜");
+      var feed2 = document.getElementById("mm131-feed");
+      if(feed2) feed2.scrollIntoView({behavior:"smooth"});
+    }
+  }
+  searchBtn.addEventListener("click", doSearch);
+  searchInput.addEventListener("keydown", function(e){
+    if(e.key === "Enter"){ e.preventDefault(); doSearch(); }
+  });
+
+  /* ---------- 标签筛选 ---------- */
+  var chips = document.querySelectorAll(".mm131-chip");
+  var emptyEl = document.getElementById("mm131-empty");
+  for(var c = 0; c < chips.length; c++){
+    chips[c].addEventListener("click", function(){
+      for(var k = 0; k < chips.length; k++) chips[k].classList.remove("mm131-chip-on");
+      this.classList.add("mm131-chip-on");
+      var cat = this.getAttribute("data-mm131-filter");
+      var items = document.querySelectorAll(".mm131-feed-grid .mm131-card");
+      var shown = 0;
+      for(var m = 0; m < items.length; m++){
+        var itemCat = items[m].getAttribute("data-mm131-cat");
+        if(cat === "all" || itemCat === cat){
+          items[m].style.display = "";
+          shown++;
+        }else{
+          items[m].style.display = "none";
+        }
+      }
+      if(shown === 0){ emptyEl.classList.add("mm131-show"); }
+      else { emptyEl.classList.remove("mm131-show"); }
+    });
+  }
+
+  /* ---------- 点赞 / 收藏 ---------- */
+  document.addEventListener("click", function(e){
+    var likeBtn = e.target.closest("[data-mm131-like]");
+    if(likeBtn){
+      var numEl = likeBtn.querySelector("b");
+      var n = parseInt((numEl.textContent || "0").replace(/,/g,""), 10) || 0;
+      if(likeBtn.classList.contains("mm131-liked")){
+        likeBtn.classList.remove("mm131-liked");
+        n = Math.max(0, n - 1);
+        toast("已取消点赞");
+      }else{
+        likeBtn.classList.add("mm131-liked");
+        n = n + 1;
+        toast("感谢你的喜欢");
+      }
+      numEl.textContent = n.toLocaleString("en-US");
+      return;
+    }
+    var saveBtn = e.target.closest("[data-mm131-save]");
+    if(saveBtn){
+      if(saveBtn.classList.contains("mm131-saved")){
+        saveBtn.classList.remove("mm131-saved");
+        toast("已取消收藏");
+      }else{
+        saveBtn.classList.add("mm131-saved");
+        toast("已加入收藏，可在个人主页查看");
+      }
+      return;
+    }
+  });
+
+  /* ---------- 弹窗 ---------- */
+  var modal = document.getElementById("mm131-modal");
+  var modalTitle = document.getElementById("mm131-modal-title");
+  var modalSub = document.getElementById("mm131-modal-sub");
+  var modalBody = document.getElementById("mm131-modal-body");
+  var modalClose = document.getElementById("mm131-modal-close");
+
+  function openModal(title, sub, html){
+    modalTitle.textContent = title;
+    modalSub.textContent = sub;
+    modalBody.innerHTML = html;
+    modal.classList.add("mm131-modal-open");
+    document.body.style.overflow = "hidden";
+  }
+  function closeModal(){
+    modal.classList.remove("mm131-modal-open");
+    document.body.style.overflow = "";
+  }
+  modalClose.addEventListener("click", closeModal);
+  modal.addEventListener("click", function(e){
+    if(e.target === modal) closeModal();
+  });
+  document.addEventListener("keydown", function(e){
+    if(e.key === "Escape" && modal.classList.contains("mm131-modal-open")) closeModal();
+  });
+
+  var submitFormHTML =
+    '<div class="mm131-field"><label for="mm131-f-title">作品标题</label><input id="mm131-f-title" type="text" placeholder="例如：清晨五点半的港口"></div>' +
+    '<div class="mm131-field"><label for="mm131-f-tag">内容方向</label><input id="mm131-f-tag" type="text" placeholder="城市探索 / 手作日常 / 人物访谈…"></div>' +
+    '<div class="mm131-field"><label for="mm131-f-desc">作品简介</label><textarea id="mm131-f-desc" placeholder="简单说明拍摄背景、时长与素材授权情况"></textarea></div>' +
+    '<button class="mm131-btn mm131-btn-primary" type="button" style="width:100%;justify-content:center;" id="mm131-f-submit">提交投稿意向</button>';
+
+  var contactFormHTML =
+    '<div class="mm131-field"><label for="mm131-c-name">称呼</label><input id="mm131-c-name" type="text" placeholder="怎么称呼你"></div>' +
+    '<div class="mm131-field"><label for="mm131-c-mail">联系方式</label><input id="mm131-c-mail" type="text" placeholder="邮箱或常用社交账号"></div>' +
+    '<div class="mm131-field"><label for="mm131-c-msg">咨询内容</label><textarea id="mm131-c-msg" placeholder="请简述合作方向或咨询问题"></textarea></div>' +
+    '<button class="mm131-btn mm131-btn-primary" type="button" style="width:100%;justify-content:center;" id="mm131-c-submit">发送咨询</button>';
+
+  document.addEventListener("click", function(e){
+    var opener = e.target.closest("[data-mm131-open]");
+    if(opener){
+      var type = opener.getAttribute("data-mm131-open");
+      if(type === "submit"){
+        openModal("创作者投稿入口", "填写后进入审核队列，通常 3 到 5 个工作日反馈结果。", submitFormHTML);
+      }else{
+        openModal("商务与合作咨询", "媒体、机构与影像空间合作，请留下可联系的方式。", contactFormHTML);
+      }
+      return;
+    }
+    if(e.target.id === "mm131-f-submit"){
+      var t = document.getElementById("mm131-f-title").value.trim();
+      if(!t){ toast("请先填写作品标题"); return; }
+      closeModal();
+      toast("投稿意向已记录，请留意站内通知与邮箱");
+      return;
+    }
+    if(e.target.id === "mm131-c-submit"){
+      var m = document.getElementById("mm131-c-mail").value.trim();
+      if(!m){ toast("请填写联系方式，便于我们回复"); return; }
+      closeModal();
+      toast("咨询已提交，我们会在 2 个工作日内回复");
+      return;
+    }
+    var authorBtn = e.target.closest("[data-mm131-author]");
+    if(authorBtn){
+      var parts = authorBtn.getAttribute("data-mm131-author").split("|");
+      var html = '<div style="background:#111924;border:1px solid #29384d;border-radius:12px;padding:16px;font-size:13.5px;color:#b8c4d6;line-height:1.9;">' +
+        '<p style="margin-bottom:8px;"><b style="color:#f5b942;">擅长领域：</b>' + parts[1] + '</p>' +
+        '<p style="margin-bottom:8px;">' + parts[2] + '</p>' +
+        '<p><b style="color:#3ddc97;">数据：</b>' + parts[3] + '</p></div>';
+      openModal(parts[0], "平台入驻创作者档案", html);
+      return;
+    }
+  });
+
+  /* ---------- 复制链接 / 分享 ---------- */
+  function copyLink(){
+    var url = "https://www.mm131shuang.studio/";
+    function fallback(){
+      var ta = document.createElement("textarea");
+      ta.value = url;
+      ta.style.position = "fixed";
+      ta.style.opacity = "0";
+      document.body.appendChild(ta);
+      ta.select();
+      try{ document.execCommand("copy"); toast("页面链接已复制"); }
+      catch(err){ toast("当前环境不支持自动复制，请手动收藏本页"); }
+      document.body.removeChild(ta);
+    }
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(url).then(function(){
+        toast("页面链接已复制，欢迎分享给同好");
+      }).catch(fallback);
+    }else{
+      fallback();
+    }
+  }
+  document.addEventListener("click", function(e){
+    if(e.target.closest("[data-mm131-share]")) copyLink();
+  });
+
+  /* ---------- 回到顶部 ---------- */
+  var topBtn = document.getElementById("mm131-top-btn");
+  var scrollLock = false;
+  window.addEventListener("scroll", function(){
+    if(scrollLock) return;
+    scrollLock = true;
+    window.requestAnimationFrame(function(){
+      if(window.scrollY > 520){ topBtn.classList.add("mm131-top-show"); }
+      else { topBtn.classList.remove("mm131-top-show"); }
+      scrollLock = false;
+    });
+  });
+  topBtn.addEventListener("click", function(){
+    window.scrollTo({top:0, behavior:"smooth"});
+  });
+
+  /* ---------- 导航高亮 ---------- */
+  var navLinks = document.querySelectorAll(".mm131-nav a");
+  var sections = [];
+  for(var i = 0; i < navLinks.length; i++){
+    var id = navLinks[i].getAttribute("href");
+    if(id && id.charAt(0) === "#"){
+      var el = document.querySelector(id);
+      if(el) sections.push({link:navLinks[i], el:el});
+    }
+  }
+  window.addEventListener("scroll", function(){
+    var pos = window.scrollY + 180;
+    var current = null;
+    for(var j = 0; j < sections.length; j++){
+      if(sections[j].el.offsetTop <= pos) current = sections[j];
+    }
+    for(var k = 0; k < navLinks.length; k++) navLinks[k].classList.remove("mm131-nav-active");
+    if(current) current.link.classList.add("mm131-nav-active");
+  });
+
+  /* ---------- 数字滚动 ---------- */
+  var counters = document.querySelectorAll("[data-mm131-count]");
+  var counted = false;
+  function animateCounters(){
+    if(counted) return;
+    counted = true;
+    for(var i = 0; i < counters.length; i++){
+      (function(el){
+        var target = parseInt(el.getAttribute("data-mm131-count"), 10) || 0;
+        var start = 0;
+        var dur = 1200;
+        var t0 = null;
+        function step(ts){
+          if(!t0) t0 = ts;
+          var p = Math.min((ts - t0) / dur, 1);
+          var val = Math.floor(start + (target - start) * (1 - Math.pow(1 - p, 3)));
+          el.textContent = val.toLocaleString("en-US");
+          if(p < 1) requestAnimationFrame(step);
+          else el.textContent = target.toLocaleString("en-US");
+        }
+        requestAnimationFrame(step);
+      })(counters[i]);
+    }
+  }
+  if("IntersectionObserver" in window){
+    var statBox = document.querySelector(".mm131-stats");
+    if(statBox){
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(en){
+          if(en.isIntersecting){ animateCounters(); io.disconnect(); }
+        });
+      }, {threshold:.4});
+      io.observe(statBox);
+    }
+  }else{
+    animateCounters();
+  }
+
+})();
+</script>
+</body>
+  </html>
